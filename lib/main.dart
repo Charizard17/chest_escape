@@ -1,22 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flame/game.dart';
+
+import './game.dart';
 
 void main() {
-  runApp(const MyApp());
-}
+  final WallPasserGame _game = WallPasserGame();
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Container(
-            child: Text('Wall Passer Flame Game'),
-          ),
-        ),
-      ),
-    );
-  }
+  runApp(
+    GameWidget(
+      game: _game,
+    ),
+  );
 }
