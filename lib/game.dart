@@ -3,22 +3,20 @@ import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flame/sprite.dart';
 
+import './player.dart';
+
 class WallPasserGame extends FlameGame {
-  final SpriteAnimationComponent darkSoldier = SpriteAnimationComponent(
-    size: Vector2(130, 130),
-    position: Vector2(130, 300),
-  );
+  late Player _player;
 
   @override
   Future<void>? onLoad() async {
-    final spriteSheet = SpriteSheet(
-      image: await Flame.images.load('darksoldier_spritesheet.png'),
-      srcSize: Vector2(64, 64),
+    _player = Player(
+      position: Vector2(150, 150),
+      size: Vector2(100, 100),
+      anchor: Anchor.center,
     );
 
-    darkSoldier.animation = spriteSheet.createAnimation(row: 1, stepTime: 0.1);
-
-    add(darkSoldier);
+    add(_player);
 
     return super.onLoad();
   }
