@@ -6,9 +6,11 @@ import 'package:flame/input.dart';
 import 'package:flame/palette.dart';
 
 import './player.dart';
+import './wall.dart';
 
 class WallPasserGame extends FlameGame with HasTappables, HasDraggables {
   late Player _player;
+  late Wall _wall;
 
   @override
   Future<void>? onLoad() async {
@@ -26,12 +28,20 @@ class WallPasserGame extends FlameGame with HasTappables, HasDraggables {
     add(joystick);
 
     _player = Player(
-      position: Vector2(150, 150),
+      position: Vector2(200, 400),
       size: Vector2(100, 100),
       anchor: Anchor.center,
       joystick: joystick,
     );
     add(_player);
+
+    _wall = Wall(
+      position: Vector2(150, 150),
+      size: Vector2(50, 50),
+      anchor: Anchor.center,
+      canvasSize: canvasSize,
+    );
+    add(_wall);
 
     return super.onLoad();
   }
