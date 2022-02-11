@@ -8,6 +8,7 @@ import './wall.dart';
 
 class WallManager extends Component
     with HasGameRef<WallPasserGame>, GameCanvasSize {
+  final int _baseNumber = 8;
   final Sprite sprite;
   Random random = Random();
   late Timer _timer;
@@ -15,23 +16,31 @@ class WallManager extends Component
   WallManager({
     required this.sprite,
   }) : super() {
-    _timer = Timer(1, repeat: true, onTick: _spawnWall);
+    _timer = Timer(3, repeat: true, onTick: _spawnWalls);
     _timer.start();
   }
 
-  void _spawnWall() {
-    Vector2 initialSize = Vector2(50, 50);
-    Vector2 position = Vector2(random.nextDouble() * this.gameSize.x, 0);
+  void _spawnWalls() {
+    Vector2 initialSize =
+        Vector2(this.gameSize.x / _baseNumber, this.gameSize.x / _baseNumber);
+    Vector2 position = Vector2(this.gameSize.x / _baseNumber / 2, 0);
 
-    Wall wall = Wall(
-      sprite: sprite,
-      position: position,
-      size: initialSize,
-      anchor: Anchor.center,
-      canvasSize: this.gameSize,
-    );
+    final randomNumber = random.nextInt(_baseNumber);
+    print(randomNumber);
 
-    gameRef.add(wall);
+    for (var i = 0; i < _baseNumber; ++i) {
+      Wall wall = Wall(
+        sprite: sprite,
+        position: position + Vector2(i * this.gameSize.x / _baseNumber, 0),
+        size: initialSize,
+        anchor: Anchor.center,
+        canvasSize: this.gameSize,
+      );
+
+      if (randomNumber != i) {
+        gameRef.add(wall);
+      }
+    }
   }
 
   @override

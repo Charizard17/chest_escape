@@ -1,7 +1,7 @@
 import 'package:flame/components.dart';
 
 class Wall extends SpriteComponent {
-  final double _speed = 2;
+  final double _speed = 1.5;
   late Vector2 canvasSize;
 
   Wall({
