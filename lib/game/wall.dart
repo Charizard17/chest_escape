@@ -26,7 +26,7 @@ class Wall extends SpriteComponent {
     this.position.y += _speed;
 
     if (this.position.y > canvasSize.y) {
-      this.position.y = 0;
+      removeFromParent();
     }
 
     super.update(dt);

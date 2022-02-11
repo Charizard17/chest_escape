@@ -8,10 +8,12 @@ import 'package:flame/palette.dart';
 
 import './player.dart';
 import './wall.dart';
+import './wall_manager.dart';
 
 class WallPasserGame extends FlameGame with HasTappables, HasDraggables {
   late Player _player;
   late Wall _wall;
+  late WallManager _wallManager;
 
   @override
   Future<void>? onLoad() async {
@@ -45,14 +47,21 @@ class WallPasserGame extends FlameGame with HasTappables, HasDraggables {
     );
     add(_player);
 
-    _wall = Wall(
+    // _wall = Wall(
+    //   sprite: Sprite(images.fromCache('wall.png')),
+    //   position: Vector2(150, 150),
+    //   size: Vector2(50, 50),
+    //   anchor: Anchor.center,
+    //   canvasSize: canvasSize,
+    // );
+    // add(_wall);
+
+    _wallManager = WallManager(
+      gameSize: canvasSize,
       sprite: Sprite(images.fromCache('wall.png')),
-      position: Vector2(150, 150),
-      size: Vector2(50, 50),
-      anchor: Anchor.center,
-      canvasSize: canvasSize,
     );
-    add(_wall);
+
+    add(_wallManager);
 
     return super.onLoad();
   }
