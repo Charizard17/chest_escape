@@ -1,18 +1,18 @@
 import 'dart:math';
 
 import 'package:flame/components.dart';
+import 'package:wall_passer_flame_game/game/game_canvas_size.dart';
 
 import './game.dart';
 import './wall.dart';
 
-class WallManager extends Component with HasGameRef<WallPasserGame> {
-  final Vector2 gameSize;
+class WallManager extends Component
+    with HasGameRef<WallPasserGame>, GameCanvasSize {
   final Sprite sprite;
   Random random = Random();
   late Timer _timer;
 
   WallManager({
-    required this.gameSize,
     required this.sprite,
   }) : super() {
     _timer = Timer(1, repeat: true, onTick: _spawnWall);
@@ -21,18 +21,17 @@ class WallManager extends Component with HasGameRef<WallPasserGame> {
 
   void _spawnWall() {
     Vector2 initialSize = Vector2(50, 50);
-    Vector2 position = Vector2(random.nextDouble() * gameSize.x, 0);
+    Vector2 position = Vector2(random.nextDouble() * this.gameSize.x, 0);
 
     Wall wall = Wall(
       sprite: sprite,
       position: position,
       size: initialSize,
       anchor: Anchor.center,
-      canvasSize: gameSize,
+      canvasSize: this.gameSize,
     );
 
     gameRef.add(wall);
-    print('spawn wall');
   }
 
   @override

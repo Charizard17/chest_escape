@@ -47,17 +47,7 @@ class WallPasserGame extends FlameGame with HasTappables, HasDraggables {
     );
     add(_player);
 
-    // _wall = Wall(
-    //   sprite: Sprite(images.fromCache('wall.png')),
-    //   position: Vector2(150, 150),
-    //   size: Vector2(50, 50),
-    //   anchor: Anchor.center,
-    //   canvasSize: canvasSize,
-    // );
-    // add(_wall);
-
     _wallManager = WallManager(
-      gameSize: canvasSize,
       sprite: Sprite(images.fromCache('wall.png')),
     );
 

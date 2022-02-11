@@ -1,7 +1,8 @@
 import 'package:flame/components.dart';
 import 'package:flame/sprite.dart';
+import 'package:wall_passer_flame_game/game/game_canvas_size.dart';
 
-class Player extends SpriteAnimationComponent {
+class Player extends SpriteAnimationComponent with GameCanvasSize {
   final JoystickComponent joystick;
   final SpriteSheet spriteSheet;
   final double _speed = 80;
