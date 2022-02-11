@@ -1,3 +1,4 @@
+import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
@@ -14,6 +15,11 @@ class WallPasserGame extends FlameGame with HasTappables, HasDraggables {
 
   @override
   Future<void>? onLoad() async {
+    await images.loadAll([
+      'darksoldier_spritesheet.png',
+      'wall.png',
+    ]);
+
     final joystick = JoystickComponent(
       knob: CircleComponent(
         radius: 24,
@@ -28,6 +34,10 @@ class WallPasserGame extends FlameGame with HasTappables, HasDraggables {
     add(joystick);
 
     _player = Player(
+      spriteSheet: SpriteSheet(
+        image: images.fromCache('darksoldier_spritesheet.png'),
+        srcSize: Vector2(64, 64),
+      ),
       position: Vector2(200, 400),
       size: Vector2(100, 100),
       anchor: Anchor.center,
@@ -36,6 +46,7 @@ class WallPasserGame extends FlameGame with HasTappables, HasDraggables {
     add(_player);
 
     _wall = Wall(
+      sprite: Sprite(images.fromCache('wall.png')),
       position: Vector2(150, 150),
       size: Vector2(50, 50),
       anchor: Anchor.center,

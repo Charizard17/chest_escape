@@ -1,9 +1,9 @@
-import 'package:flame/flame.dart';
 import 'package:flame/components.dart';
 import 'package:flame/sprite.dart';
 
 class Player extends SpriteAnimationComponent {
   final JoystickComponent joystick;
+  final SpriteSheet spriteSheet;
   final double _speed = 80;
 
   late final SpriteAnimation _upWalkAnimation;
@@ -12,19 +12,15 @@ class Player extends SpriteAnimationComponent {
   late final SpriteAnimation _rightWalkAnimation;
 
   Player({
+    required this.spriteSheet,
     required Vector2? position,
     required Vector2? size,
     required Anchor? anchor,
     required this.joystick,
-  }) : super(position: position, size: size, anchor: anchor);
+  }) : super(position: position, size: size, anchor: anchor) {}
 
   @override
   Future<void>? onLoad() async {
-    final spriteSheet = SpriteSheet(
-      image: await Flame.images.load('darksoldier_spritesheet.png'),
-      srcSize: Vector2(64, 64),
-    );
-
     _upWalkAnimation =
         spriteSheet.createAnimation(row: 1, stepTime: 0.11, from: 0, to: 5);
     _downWalkAnimation =

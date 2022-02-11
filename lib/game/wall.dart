@@ -5,11 +5,12 @@ class Wall extends SpriteComponent {
   late Vector2 canvasSize;
 
   Wall({
-    Vector2? position,
-    Vector2? size,
-    Anchor? anchor,
+    required Sprite? sprite,
+    required Vector2? position,
+    required Vector2? size,
+    required Anchor? anchor,
     required this.canvasSize,
-  }) : super(position: position, size: size, anchor: anchor);
+  }) : super(sprite: sprite, position: position, size: size, anchor: anchor);
 
   @override
   Future<void>? onLoad() async {
