@@ -21,9 +21,9 @@ class WallManager extends Component
   }
 
   void _spawnWalls() {
-    Vector2 initialSize =
-        Vector2(this.gameSize.x / _baseNumber, this.gameSize.x / _baseNumber);
-    Vector2 position = Vector2(this.gameSize.x / _baseNumber / 2, 0);
+    Vector2 initialSize = Vector2(this.gameCanvasSize.x / _baseNumber,
+        this.gameCanvasSize.x / _baseNumber);
+    Vector2 position = Vector2(this.gameCanvasSize.x / _baseNumber / 2, 0);
 
     final randomNumber = random.nextInt(_baseNumber);
     print(randomNumber);
@@ -31,10 +31,11 @@ class WallManager extends Component
     for (var i = 0; i < _baseNumber; ++i) {
       Wall wall = Wall(
         sprite: sprite,
-        position: position + Vector2(i * this.gameSize.x / _baseNumber, 0),
+        position:
+            position + Vector2(i * this.gameCanvasSize.x / _baseNumber, 0),
         size: initialSize,
         anchor: Anchor.center,
-        canvasSize: this.gameSize,
+        canvasSize: this.gameCanvasSize,
       );
 
       if (randomNumber != i) {
