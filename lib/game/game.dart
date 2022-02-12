@@ -18,9 +18,17 @@ class WallPasserGame extends FlameGame with HasTappables, HasDraggables {
   @override
   Future<void>? onLoad() async {
     await images.loadAll([
+      'background.png',
       'darksoldier_spritesheet.png',
       'wall.png',
     ]);
+
+    final backgroundImage = images.fromCache('background.png');
+    final backgroundSpriteComponent = SpriteComponent(
+      sprite: Sprite(backgroundImage),
+      size: canvasSize,
+    );
+    add(backgroundSpriteComponent);
 
     final joystick = JoystickComponent(
       knob: CircleComponent(
