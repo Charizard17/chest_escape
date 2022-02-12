@@ -41,7 +41,6 @@ class WallPasserGame extends FlameGame with HasTappables, HasDraggables {
         srcSize: Vector2(64, 64),
       ),
       position: Vector2(200, 400),
-      size: Vector2(100, 100),
       anchor: Anchor.center,
       joystick: joystick,
     );

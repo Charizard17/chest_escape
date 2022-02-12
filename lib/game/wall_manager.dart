@@ -26,7 +26,6 @@ class WallManager extends Component
     Vector2 position = Vector2(this.gameCanvasSize.x / _baseNumber / 2, 0);
 
     final randomNumber = random.nextInt(_baseNumber);
-    print(randomNumber);
 
     for (var i = 0; i < _baseNumber; ++i) {
       Wall wall = Wall(
