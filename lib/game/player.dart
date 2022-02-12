@@ -1,12 +1,20 @@
 import 'package:flame/components.dart';
 import 'package:flame/geometry.dart';
 import 'package:flame/sprite.dart';
-import 'package:wall_passer_flame_game/game/game_canvas_size.dart';
 
-class Player extends SpriteAnimationComponent with GameCanvasSize, HasHitboxes {
+import './game_canvas_size.dart';
+import './wall.dart';
+
+class Player extends SpriteAnimationComponent
+    with GameCanvasSize, HasHitboxes, Collidable {
   final JoystickComponent joystick;
   final SpriteSheet spriteSheet;
   final double _speed = 150;
+
+  int _playerScore = 0;
+  int get playerScore => _playerScore;
+  int _playerHealth = 100;
+  int get playerHealth => _playerHealth;
 
   late final SpriteAnimation _upWalkAnimation;
   late final SpriteAnimation _downWalkAnimation;
@@ -33,6 +41,8 @@ class Player extends SpriteAnimationComponent with GameCanvasSize, HasHitboxes {
         spriteSheet.createAnimation(row: 2, stepTime: 0.11, from: 0, to: 4);
 
     this.animation = _upWalkAnimation;
+
+    debugMode = true;
 
     return super.onLoad();
   }
@@ -71,5 +81,18 @@ class Player extends SpriteAnimationComponent with GameCanvasSize, HasHitboxes {
     addHitbox(hitbox);
 
     super.onMount();
+  }
+
+  @override
+  void onCollision(Set<Vector2> intersectionPoints, Collidable other) {
+    if (other is Wall) {
+      print('wall hit to player');
+    }
+
+    super.onCollision(intersectionPoints, other);
+  }
+
+  void increaseScore(int points) {
+    _playerScore += points;
   }
 }

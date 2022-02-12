@@ -9,7 +9,7 @@ void main() async {
 
   runApp(
     MaterialApp(
-      home: const GamePlay(),
+      home: GamePlay(),
     ),
   );
 }

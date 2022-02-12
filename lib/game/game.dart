@@ -1,16 +1,16 @@
 import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/components.dart';
-import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
-import 'package:flame/input.dart';
 import 'package:flame/palette.dart';
 
+import './game_canvas_size.dart';
 import './player.dart';
-import './wall.dart';
 import './wall_manager.dart';
+import './wall.dart';
 
-class WallPasserGame extends FlameGame with HasTappables, HasDraggables {
+class WallPasserGame extends FlameGame
+    with HasTappables, HasDraggables, HasCollidables, GameCanvasSize {
   late Player _player;
   late Wall _wall;
   late WallManager _wallManager;
@@ -57,7 +57,6 @@ class WallPasserGame extends FlameGame with HasTappables, HasDraggables {
     _wallManager = WallManager(
       sprite: Sprite(images.fromCache('wall.png')),
     );
-
     add(_wallManager);
 
     return super.onLoad();

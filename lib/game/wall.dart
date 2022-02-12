@@ -1,6 +1,9 @@
 import 'package:flame/components.dart';
+import 'package:flame/geometry.dart';
 
-class Wall extends SpriteComponent {
+import './player.dart';
+
+class Wall extends SpriteComponent with HasHitboxes, Collidable {
   final double _speed = 1.5;
   late Vector2 canvasSize;
 
@@ -18,6 +21,8 @@ class Wall extends SpriteComponent {
 
     this.sprite = sprite;
 
+    debugMode = true;
+
     return super.onLoad();
   }
 
@@ -30,5 +35,22 @@ class Wall extends SpriteComponent {
     }
 
     super.update(dt);
+  }
+
+  @override
+  void onMount() {
+    final hitbox = HitboxRectangle(relation: Vector2(0.85, 0.85));
+    addHitbox(hitbox);
+
+    super.onMount();
+  }
+
+  @override
+  void onCollision(Set<Vector2> intersectionPoints, Collidable other) {
+    if (other is Player) {
+      removeFromParent();
+    }
+
+    super.onCollision(intersectionPoints, other);
   }
 }
