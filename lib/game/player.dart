@@ -42,8 +42,6 @@ class Player extends SpriteAnimationComponent
 
     this.animation = _upWalkAnimation;
 
-    debugMode = true;
-
     return super.onLoad();
   }
 
@@ -86,7 +84,10 @@ class Player extends SpriteAnimationComponent
   @override
   void onCollision(Set<Vector2> intersectionPoints, Collidable other) {
     if (other is Wall) {
-      print('wall hit to player');
+      _playerHealth -= 10;
+      if (_playerHealth <= 0) {
+        _playerHealth = 0;
+      }
     }
 
     super.onCollision(intersectionPoints, other);

@@ -21,8 +21,6 @@ class Wall extends SpriteComponent with HasHitboxes, Collidable {
 
     this.sprite = sprite;
 
-    debugMode = true;
-
     return super.onLoad();
   }
 

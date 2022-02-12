@@ -15,6 +15,9 @@ class WallPasserGame extends FlameGame
   late Wall _wall;
   late WallManager _wallManager;
 
+  late TextComponent _playerScore;
+  late TextComponent _playerHealth;
+
   @override
   Future<void>? onLoad() async {
     await images.loadAll([
@@ -59,6 +62,47 @@ class WallPasserGame extends FlameGame
     );
     add(_wallManager);
 
+    _playerScore = TextComponent(
+      text: 'Score: 0',
+      position: Vector2(10, 10),
+      textRenderer: TextPaint(
+        style: TextStyle(
+          fontSize: 18,
+          color: Colors.black,
+        ),
+      ),
+    );
+    add(_playerScore);
+
+    _playerHealth = TextComponent(
+      text: 'Health: 100%',
+      position: Vector2(canvasSize.x - 120, 10),
+      textRenderer: TextPaint(
+        style: TextStyle(
+          fontSize: 18,
+          color: Colors.black,
+        ),
+      ),
+    );
+    add(_playerHealth);
+
     return super.onLoad();
+  }
+
+  @override
+  void update(double dt) {
+    _playerHealth.text = 'Health: ${_player.playerHealth}%';
+
+    super.update(dt);
+  }
+
+  @override
+  void render(Canvas canvas) {
+    super.render(canvas);
+
+    canvas.drawRect(
+      Rect.fromLTWH(size.x - 120, 30, 1.1 * _player.playerHealth.toDouble(), 5),
+      Paint()..color = Color.fromARGB(255, 203, 29, 29),
+    );
   }
 }
