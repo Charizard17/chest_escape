@@ -1,14 +1,15 @@
+import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
-import 'package:flame/game.dart';
 
-import './game/game.dart';
+import './screens/game_play.dart';
 
-void main() {
-  final WallPasserGame _game = WallPasserGame();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Flame.device.fullScreen();
 
   runApp(
-    GameWidget(
-      game: _game,
+    MaterialApp(
+      home: const GamePlay(),
     ),
   );
 }
