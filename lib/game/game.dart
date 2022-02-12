@@ -33,11 +33,11 @@ class WallPasserGame extends FlameGame with HasTappables, HasDraggables {
     final joystick = JoystickComponent(
       knob: CircleComponent(
         radius: 24,
-        paint: BasicPalette.white.withAlpha(100).paint(),
+        paint: BasicPalette.black.withAlpha(100).paint(),
       ),
       background: CircleComponent(
         radius: 60,
-        paint: BasicPalette.white.withAlpha(100).paint(),
+        paint: BasicPalette.black.withAlpha(100).paint(),
       ),
       margin: const EdgeInsets.only(right: 50, bottom: 40),
     );

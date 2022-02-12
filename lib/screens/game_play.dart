@@ -11,7 +11,7 @@ class GamePlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // color: Colors.black,
+      color: Colors.black,
       child: SafeArea(
         child: Scaffold(
           body: GameWidget(
