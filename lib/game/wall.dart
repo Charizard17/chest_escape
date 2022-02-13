@@ -1,21 +1,20 @@
 import 'package:flame/components.dart';
 import 'package:flame/geometry.dart';
+import 'package:wall_passer_flame_game/game/game_canvas_size.dart';
 
 import './game.dart';
 import './player.dart';
 import './command.dart';
 
 class Wall extends SpriteComponent
-    with HasHitboxes, Collidable, HasGameRef<WallPasserGame> {
+    with HasHitboxes, Collidable, HasGameRef<WallPasserGame>, GameCanvasSize {
   final double _speed = 1.5;
-  late Vector2 canvasSize;
 
   Wall({
     required Sprite? sprite,
     required Vector2? position,
     required Vector2? size,
     required Anchor? anchor,
-    required this.canvasSize,
   }) : super(sprite: sprite, position: position, size: size, anchor: anchor);
 
   @override
@@ -31,7 +30,7 @@ class Wall extends SpriteComponent
   void update(double dt) {
     this.position.y += _speed;
 
-    if (this.position.y > canvasSize.y) {
+    if (this.position.y > gameCanvasSize.y + this.size.y / 2) {
       removeFromParent();
 
       final command = Command<Player>(action: (player) {

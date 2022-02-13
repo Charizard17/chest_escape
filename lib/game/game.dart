@@ -33,18 +33,19 @@ class WallPasserGame extends FlameGame
     final backgroundImage = images.fromCache('background.png');
     final backgroundSpriteComponent = SpriteComponent(
       sprite: Sprite(backgroundImage),
-      size: canvasSize,
+      size: gameCanvasSize,
+      position: gameTopPadding,
     );
     add(backgroundSpriteComponent);
 
     final joystick = JoystickComponent(
       knob: CircleComponent(
         radius: 24,
-        paint: BasicPalette.black.withAlpha(100).paint(),
+        paint: BasicPalette.white.withAlpha(100).paint(),
       ),
       background: CircleComponent(
         radius: 60,
-        paint: BasicPalette.black.withAlpha(100).paint(),
+        paint: BasicPalette.white.withAlpha(100).paint(),
       ),
       margin: const EdgeInsets.only(right: 50, bottom: 40),
     );
@@ -72,7 +73,7 @@ class WallPasserGame extends FlameGame
       textRenderer: TextPaint(
         style: TextStyle(
           fontSize: 18,
-          color: Colors.black,
+          color: Colors.white,
         ),
       ),
     );
@@ -81,14 +82,15 @@ class WallPasserGame extends FlameGame
 
     _playerHealth = TextComponent(
       text: 'Health: 100%',
-      position: Vector2(canvasSize.x - 120, 10),
+      position: Vector2(canvasSize.x - 10, 10),
       textRenderer: TextPaint(
         style: TextStyle(
           fontSize: 18,
-          color: Colors.black,
+          color: Colors.white,
         ),
       ),
     );
+    _playerHealth.anchor = Anchor.topRight;
     _playerHealth.positionType = PositionType.viewport;
     add(_playerHealth);
 
@@ -115,12 +117,12 @@ class WallPasserGame extends FlameGame
 
   @override
   void render(Canvas canvas) {
-    super.render(canvas);
-
     canvas.drawRect(
-      Rect.fromLTWH(size.x - 120, 30, 1.1 * _player.playerHealth.toDouble(), 5),
-      Paint()..color = Color.fromARGB(255, 203, 29, 29),
+      Rect.fromLTWH(
+          size.x - 125, 10, 1.2 * _player.playerHealth.toDouble(), 25),
+      Paint()..color = Color.fromARGB(255, 135, 11, 11),
     );
+    super.render(canvas);
   }
 
   void addCommand(Command command) {

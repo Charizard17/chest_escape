@@ -53,9 +53,10 @@ class Player extends SpriteAnimationComponent
     }
 
     this.position.clamp(
-        Vector2(this.size.x / 4, this.size.y / 2),
-        Vector2(gameCanvasSize.x - this.size.x / 4,
-            gameCanvasSize.y - this.size.y / 2));
+          Vector2(this.size.x / 4, this.size.y / 2 + gameTopPadding.y),
+          Vector2(gameCanvasSize.x - this.size.x / 4,
+              gameCanvasSize.y - this.size.y / 2 + gameTopPadding.y),
+        );
 
     if (joystick.direction == JoystickDirection.left ||
         joystick.direction == JoystickDirection.downLeft ||

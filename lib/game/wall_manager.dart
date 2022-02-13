@@ -23,8 +23,9 @@ class WallManager extends Component
   void _spawnWalls() {
     Vector2 initialSize = Vector2(this.gameCanvasSize.x / _baseNumber,
         this.gameCanvasSize.x / _baseNumber);
-    Vector2 position = Vector2(this.gameCanvasSize.x / _baseNumber / 2,
-        this.gameCanvasSize.x / _baseNumber / 2);
+    Vector2 position = gameTopPadding +
+        Vector2(this.gameCanvasSize.x / _baseNumber / 2,
+            this.gameCanvasSize.x / _baseNumber / 2);
 
     final randomNumber = random.nextInt(_baseNumber);
 
@@ -35,7 +36,6 @@ class WallManager extends Component
             position + Vector2(i * this.gameCanvasSize.x / _baseNumber, 0),
         size: initialSize,
         anchor: Anchor.center,
-        canvasSize: this.gameCanvasSize,
       );
 
       if (randomNumber != i) {
