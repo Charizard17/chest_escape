@@ -8,6 +8,7 @@ import './game_canvas_size.dart';
 import './player.dart';
 import './wall_manager.dart';
 import './wall.dart';
+import './command.dart';
 
 class WallPasserGame extends FlameGame
     with HasTappables, HasDraggables, HasCollidables, GameCanvasSize {
@@ -17,6 +18,9 @@ class WallPasserGame extends FlameGame
 
   late TextComponent _playerScore;
   late TextComponent _playerHealth;
+
+  final _commandList = List<Command>.empty(growable: true);
+  final _addLaterCommandList = List<Command>.empty(growable: true);
 
   @override
   Future<void>? onLoad() async {
@@ -91,9 +95,19 @@ class WallPasserGame extends FlameGame
 
   @override
   void update(double dt) {
-    _playerHealth.text = 'Health: ${_player.playerHealth}%';
-
     super.update(dt);
+
+    _commandList.forEach((command) {
+      children.forEach((child) {
+        command.run(child);
+      });
+    });
+
+    _commandList.clear();
+    _commandList.addAll(_addLaterCommandList);
+    _addLaterCommandList.clear();
+
+    _playerHealth.text = 'Health: ${_player.playerHealth}%';
   }
 
   @override
@@ -104,5 +118,9 @@ class WallPasserGame extends FlameGame
       Rect.fromLTWH(size.x - 120, 30, 1.1 * _player.playerHealth.toDouble(), 5),
       Paint()..color = Color.fromARGB(255, 203, 29, 29),
     );
+  }
+
+  void addCommand(Command command) {
+    _addLaterCommandList.add(command);
   }
 }
