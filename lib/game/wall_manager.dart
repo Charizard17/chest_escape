@@ -55,4 +55,9 @@ class WallManager extends Component
     super.update(dt);
     _timer.update(dt);
   }
+
+  void reset() {
+    _timer.stop();
+    _timer.start();
+  }
 }

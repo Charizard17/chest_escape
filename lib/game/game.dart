@@ -9,6 +9,7 @@ import './player.dart';
 import './wall_manager.dart';
 import './wall.dart';
 import './command.dart';
+import '../overlays/game_over_menu.dart';
 
 class WallPasserGame extends FlameGame
     with HasTappables, HasDraggables, HasCollidables, GameCanvasSize {
@@ -113,13 +114,18 @@ class WallPasserGame extends FlameGame
 
     _playerScore.text = 'Score: ${_player.playerScore}';
     _playerHealth.text = 'Health: ${_player.playerHealth}%';
+
+    if (_player.playerHealth <= 0 && !camera.shaking) {
+      this.pauseEngine();
+      overlays.add(GameOverMenu.ID);
+    }
   }
 
   @override
   void render(Canvas canvas) {
     canvas.drawRect(
-      Rect.fromLTWH(
-          size.x - 125, 10, 1.2 * _player.playerHealth.toDouble(), 25),
+      Rect.fromLTWH(gameCanvasSize.x - 130, 10,
+          1.25 * _player.playerHealth.toDouble(), 25),
       Paint()..color = Color.fromARGB(255, 135, 11, 11),
     );
     super.render(canvas);
@@ -127,5 +133,14 @@ class WallPasserGame extends FlameGame
 
   void addCommand(Command command) {
     _addLaterCommandList.add(command);
+  }
+
+  void reset() {
+    _player.reset();
+    _wallManager.reset();
+
+    children.whereType<Wall>().forEach((child) {
+      child.removeFromParent();
+    });
   }
 }

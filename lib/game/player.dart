@@ -100,4 +100,10 @@ class Player extends SpriteAnimationComponent
   void increaseScore(int points) {
     _playerScore += points;
   }
+
+  void reset() {
+    this._playerHealth = 100;
+    this._playerScore = 0;
+    this.position = Vector2(200, 400);
+  }
 }
