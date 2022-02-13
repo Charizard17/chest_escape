@@ -2,11 +2,12 @@ import 'package:flame/components.dart';
 import 'package:flame/geometry.dart';
 import 'package:flame/sprite.dart';
 
+import './game.dart';
 import './game_canvas_size.dart';
 import './wall.dart';
 
 class Player extends SpriteAnimationComponent
-    with GameCanvasSize, HasHitboxes, Collidable {
+    with GameCanvasSize, HasHitboxes, Collidable, HasGameRef<WallPasserGame> {
   final JoystickComponent joystick;
   final SpriteSheet spriteSheet;
   final double _speed = 150;
@@ -88,6 +89,8 @@ class Player extends SpriteAnimationComponent
       if (_playerHealth <= 0) {
         _playerHealth = 0;
       }
+
+      gameRef.camera.shake(intensity: 5);
     }
 
     super.onCollision(intersectionPoints, other);

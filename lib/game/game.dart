@@ -76,6 +76,7 @@ class WallPasserGame extends FlameGame
         ),
       ),
     );
+    _playerScore.positionType = PositionType.viewport;
     add(_playerScore);
 
     _playerHealth = TextComponent(
@@ -88,6 +89,7 @@ class WallPasserGame extends FlameGame
         ),
       ),
     );
+    _playerHealth.positionType = PositionType.viewport;
     add(_playerHealth);
 
     return super.onLoad();
