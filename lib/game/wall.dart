@@ -1,9 +1,12 @@
 import 'package:flame/components.dart';
 import 'package:flame/geometry.dart';
 
+import './game.dart';
 import './player.dart';
+import './command.dart';
 
-class Wall extends SpriteComponent with HasHitboxes, Collidable {
+class Wall extends SpriteComponent
+    with HasHitboxes, Collidable, HasGameRef<WallPasserGame> {
   final double _speed = 1.5;
   late Vector2 canvasSize;
 
@@ -30,6 +33,11 @@ class Wall extends SpriteComponent with HasHitboxes, Collidable {
 
     if (this.position.y > canvasSize.y) {
       removeFromParent();
+
+      final command = Command<Player>(action: (player) {
+        player.increaseScore(1);
+      });
+      gameRef.addCommand(command);
     }
 
     super.update(dt);
@@ -47,6 +55,11 @@ class Wall extends SpriteComponent with HasHitboxes, Collidable {
   void onCollision(Set<Vector2> intersectionPoints, Collidable other) {
     if (other is Player) {
       removeFromParent();
+
+      final command = Command<Player>(action: (player) {
+        player.increaseScore(1);
+      });
+      gameRef.addCommand(command);
     }
 
     super.onCollision(intersectionPoints, other);

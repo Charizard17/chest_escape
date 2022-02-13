@@ -107,6 +107,7 @@ class WallPasserGame extends FlameGame
     _commandList.addAll(_addLaterCommandList);
     _addLaterCommandList.clear();
 
+    _playerScore.text = 'Score: ${_player.playerScore}';
     _playerHealth.text = 'Health: ${_player.playerHealth}%';
   }
 
