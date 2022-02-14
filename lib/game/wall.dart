@@ -8,7 +8,7 @@ import './command.dart';
 
 class Wall extends SpriteComponent
     with HasHitboxes, Collidable, HasGameRef<WallPasserGame>, GameCanvasSize {
-  final double _speed = 1.5;
+  double _speed = 1.4;
 
   Wall({
     required Sprite? sprite,
@@ -39,6 +39,19 @@ class Wall extends SpriteComponent
       gameRef.addCommand(command);
     }
 
+    if (gameRef.gameLevel == 2) {
+      _speed = 1.8;
+    }
+    if (gameRef.gameLevel == 3) {
+      _speed = 2.2;
+    }
+    if (gameRef.gameLevel == 4) {
+      _speed = 2.5;
+    }
+    if (gameRef.gameLevel == 5) {
+      _speed = 3;
+    }
+
     super.update(dt);
   }
 
@@ -62,5 +75,9 @@ class Wall extends SpriteComponent
     }
 
     super.onCollision(intersectionPoints, other);
+  }
+
+  void reset() {
+    this._speed = 1.4;
   }
 }

@@ -10,7 +10,7 @@ class Player extends SpriteAnimationComponent
     with GameCanvasSize, HasHitboxes, Collidable, HasGameRef<WallPasserGame> {
   final JoystickComponent joystick;
   final SpriteSheet spriteSheet;
-  final double _speed = 150;
+  final double _speed = 200;
 
   int _playerScore = 0;
   int get playerScore => _playerScore;

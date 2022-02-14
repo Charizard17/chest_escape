@@ -16,7 +16,7 @@ class WallManager extends Component
   WallManager({
     required this.sprite,
   }) : super() {
-    _timer = Timer(3, repeat: true, onTick: _spawnWalls);
+    _timer = Timer(2.5, repeat: true, onTick: _spawnWalls);
     _timer.start();
   }
 

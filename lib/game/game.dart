@@ -17,6 +17,9 @@ class WallPasserGame extends FlameGame
   late Wall _wall;
   late WallManager _wallManager;
 
+  int _gameLevel = 1;
+  int get gameLevel => _gameLevel;
+
   late TextComponent _playerScore;
   late TextComponent _playerHealth;
 
@@ -102,6 +105,19 @@ class WallPasserGame extends FlameGame
   void update(double dt) {
     super.update(dt);
 
+    if (_player.playerScore >= 50) {
+      _gameLevel = 2;
+    }
+    if (_player.playerScore >= 150) {
+      _gameLevel = 3;
+    }
+    if (_player.playerScore >= 500) {
+      _gameLevel = 4;
+    }
+    if (_player.playerScore >= 1000) {
+      _gameLevel = 5;
+    }
+
     _commandList.forEach((command) {
       children.forEach((child) {
         command.run(child);
@@ -136,11 +152,17 @@ class WallPasserGame extends FlameGame
   }
 
   void reset() {
+    this._gameLevel = 1;
     _player.reset();
     _wallManager.reset();
 
     children.whereType<Wall>().forEach((child) {
       child.removeFromParent();
     });
+
+    final command = Command<Wall>(action: (wall) {
+      wall.reset();
+    });
+    addCommand(command);
   }
 }
