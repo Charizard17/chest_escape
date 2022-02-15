@@ -60,7 +60,7 @@ class WallPasserGame extends FlameGame
         image: images.fromCache('darksoldier_spritesheet.png'),
         srcSize: Vector2(64, 64),
       ),
-      position: Vector2(200, 400),
+      position: Vector2(gameCanvasSize.x / 2, gameCanvasSize.y - 30),
       anchor: Anchor.center,
       joystick: joystick,
     );

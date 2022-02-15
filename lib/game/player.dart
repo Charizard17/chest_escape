@@ -49,7 +49,7 @@ class Player extends SpriteAnimationComponent
   @override
   void update(double dt) {
     if (!joystick.delta.isZero()) {
-      position.add(joystick.relativeDelta * _speed * dt);
+      position.add(Vector2((joystick.relativeDelta * _speed * dt).x, 0));
     }
 
     this.position.clamp(
@@ -104,6 +104,6 @@ class Player extends SpriteAnimationComponent
   void reset() {
     this._playerHealth = 100;
     this._playerScore = 0;
-    this.position = Vector2(200, 400);
+    this.position = Vector2(gameCanvasSize.x / 2, gameCanvasSize.y - 30);
   }
 }
