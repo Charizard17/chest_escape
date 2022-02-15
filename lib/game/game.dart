@@ -16,6 +16,7 @@ class WallPasserGame extends FlameGame
   late Player _player;
   late Wall _wall;
   late WallManager _wallManager;
+  late SpriteComponent _background;
 
   int _gameLevel = 1;
   int get gameLevel => _gameLevel;
@@ -29,18 +30,22 @@ class WallPasserGame extends FlameGame
   @override
   Future<void>? onLoad() async {
     await images.loadAll([
-      'background.png',
+      'background_1.png',
+      'background_2.png',
+      'background_3.png',
+      'background_4.png',
+      'background_5.png',
       'darksoldier_spritesheet.png',
       'wall.png',
     ]);
 
-    final backgroundImage = images.fromCache('background.png');
-    final backgroundSpriteComponent = SpriteComponent(
+    final backgroundImage = images.fromCache('background_1.png');
+    _background = SpriteComponent(
       sprite: Sprite(backgroundImage),
       size: gameCanvasSize,
       position: gameTopPadding,
     );
-    add(backgroundSpriteComponent);
+    add(_background);
 
     final joystick = JoystickComponent(
       knob: CircleComponent(
@@ -107,15 +112,19 @@ class WallPasserGame extends FlameGame
 
     if (_player.playerScore >= 50) {
       _gameLevel = 2;
+      this._background.sprite = Sprite(images.fromCache('background_2.png'));
     }
     if (_player.playerScore >= 150) {
       _gameLevel = 3;
+      this._background.sprite = Sprite(images.fromCache('background_3.png'));
     }
     if (_player.playerScore >= 500) {
       _gameLevel = 4;
+      this._background.sprite = Sprite(images.fromCache('background_4.png'));
     }
     if (_player.playerScore >= 1000) {
       _gameLevel = 5;
+      this._background.sprite = Sprite(images.fromCache('background_5.png'));
     }
 
     _commandList.forEach((command) {
@@ -152,6 +161,7 @@ class WallPasserGame extends FlameGame
   }
 
   void reset() {
+    this._background.sprite = Sprite(images.fromCache('background_1.png'));
     this._gameLevel = 1;
     _player.reset();
     _wallManager.reset();
