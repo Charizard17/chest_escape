@@ -1,10 +1,10 @@
 import 'dart:math';
 
 import 'package:flame/components.dart';
-import 'package:wall_passer_flame_game/game/game_canvas_size.dart';
 
 import './game.dart';
 import './wall.dart';
+import '../helpers/game_canvas_size.dart';
 
 class WallManager extends Component
     with HasGameRef<WallPasserGame>, GameCanvasSize {

@@ -1,10 +1,10 @@
 import 'package:flame/components.dart';
 import 'package:flame/geometry.dart';
-import 'package:wall_passer_flame_game/game/game_canvas_size.dart';
+import 'package:wall_passer_flame_game/helpers/game_canvas_size.dart';
 
 import './game.dart';
 import './player.dart';
-import './command.dart';
+import '../helpers/command.dart';
 
 class Wall extends SpriteComponent
     with HasHitboxes, Collidable, HasGameRef<WallPasserGame>, GameCanvasSize {

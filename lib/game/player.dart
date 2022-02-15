@@ -3,7 +3,7 @@ import 'package:flame/geometry.dart';
 import 'package:flame/sprite.dart';
 
 import './game.dart';
-import './game_canvas_size.dart';
+import '../helpers/game_canvas_size.dart';
 import './wall.dart';
 
 class Player extends SpriteAnimationComponent

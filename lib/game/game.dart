@@ -4,11 +4,11 @@ import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/palette.dart';
 
-import './game_canvas_size.dart';
+import '../helpers/game_canvas_size.dart';
+import '../helpers/command.dart';
 import './player.dart';
 import './wall_manager.dart';
 import './wall.dart';
-import './command.dart';
 import '../overlays/game_over_menu.dart';
 
 class WallPasserGame extends FlameGame
