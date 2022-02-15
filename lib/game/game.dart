@@ -44,14 +44,14 @@ class WallPasserGame extends FlameGame
 
     final joystick = JoystickComponent(
       knob: CircleComponent(
-        radius: 24,
+        radius: gameCanvasSize.x / 12,
         paint: BasicPalette.white.withAlpha(100).paint(),
       ),
-      background: CircleComponent(
-        radius: 60,
-        paint: BasicPalette.white.withAlpha(100).paint(),
+      background: RectangleComponent(
+        size: Vector2(gameCanvasSize.x / 2, gameCanvasSize.x / 6),
+        paint: BasicPalette.white.withAlpha(50).paint(),
       ),
-      margin: const EdgeInsets.only(right: 50, bottom: 40),
+      position: Vector2(gameCanvasSize.x / 2, gameCanvasSize.y + 150),
     );
     add(joystick);
 
