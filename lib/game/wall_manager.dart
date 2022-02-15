@@ -9,15 +9,19 @@ import '../helpers/game_canvas_size.dart';
 class WallManager extends Component
     with HasGameRef<WallPasserGame>, GameCanvasSize {
   final int _baseNumber = 8;
+  int _gameLevel = 1;
   Random random = Random();
   late Timer _timer;
   late Sprite sprite;
 
   WallManager({
     required this.sprite,
-  }) : super() {
-    _timer = Timer(2.5, repeat: true, onTick: _spawnWalls);
-    _timer.start();
+  }) : super() {}
+
+  @override
+  Future<void>? onLoad() {
+    _timer = Timer(3, repeat: true, onTick: _spawnWalls);
+    return super.onLoad();
   }
 
   void _spawnWalls() {
@@ -54,10 +58,22 @@ class WallManager extends Component
   void update(double dt) {
     super.update(dt);
     _timer.update(dt);
+
+    if (_gameLevel < gameRef.gameLevel) {
+      _gameLevel = gameRef.gameLevel;
+
+      var newLimit = (3 / (1 + (0.05 * _gameLevel)));
+      print(newLimit);
+
+      _timer.stop();
+      _timer = Timer(newLimit, repeat: true, onTick: _spawnWalls);
+      _timer.start();
+    }
   }
 
   void reset() {
     _timer.stop();
+    _timer = Timer(3, repeat: true, onTick: _spawnWalls);
     _timer.start();
   }
 }

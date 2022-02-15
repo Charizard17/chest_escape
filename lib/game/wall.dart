@@ -9,6 +9,7 @@ import '../helpers/command.dart';
 class Wall extends SpriteComponent
     with HasHitboxes, Collidable, HasGameRef<WallPasserGame>, GameCanvasSize {
   double _speed = 1.4;
+  int _increaseScoreBy = 1;
 
   Wall({
     required Sprite? sprite,
@@ -37,15 +38,19 @@ class Wall extends SpriteComponent
 
     if (gameRef.gameLevel == 2) {
       _speed = 1.8;
+      _increaseScoreBy = 2;
     }
     if (gameRef.gameLevel == 3) {
       _speed = 2.2;
+      _increaseScoreBy = 3;
     }
     if (gameRef.gameLevel == 4) {
       _speed = 2.5;
+      _increaseScoreBy = 4;
     }
     if (gameRef.gameLevel == 5) {
       _speed = 3;
+      _increaseScoreBy = 5;
     }
 
     super.update(dt);
@@ -65,7 +70,7 @@ class Wall extends SpriteComponent
       removeFromParent();
 
       final command = Command<Player>(action: (player) {
-        player.increaseScore(1);
+        player.increaseScore(_increaseScoreBy);
       });
       gameRef.addCommand(command);
     }
@@ -75,5 +80,6 @@ class Wall extends SpriteComponent
 
   void reset() {
     this._speed = 1.4;
+    this._increaseScoreBy = 1;
   }
 }
