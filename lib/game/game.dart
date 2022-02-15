@@ -74,6 +74,14 @@ class WallPasserGame extends FlameGame
     );
     add(_player);
 
+    final playerPlatform = RectangleComponent(
+      size: Vector2(gameCanvasSize.x, 15),
+      paint: BasicPalette.white.withAlpha(100).paint(),
+      position: Vector2(gameCanvasSize.x / 2, gameCanvasSize.y - 4),
+      anchor: Anchor.center,
+    );
+    add(playerPlatform);
+
     _wallManager = WallManager(
       sprite: Sprite(images.fromCache('wall_1.png')),
     );
@@ -169,6 +177,7 @@ class WallPasserGame extends FlameGame
 
   void reset() {
     this._background.sprite = Sprite(images.fromCache('background_1.png'));
+    this._wallManager.sprite = Sprite(images.fromCache('wall_1.png'));
     this._gameLevel = 1;
     _player.reset();
     _wallManager.reset();
