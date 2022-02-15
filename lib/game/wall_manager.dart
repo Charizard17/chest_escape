@@ -9,9 +9,9 @@ import './wall.dart';
 class WallManager extends Component
     with HasGameRef<WallPasserGame>, GameCanvasSize {
   final int _baseNumber = 8;
-  final Sprite sprite;
   Random random = Random();
   late Timer _timer;
+  late Sprite sprite;
 
   WallManager({
     required this.sprite,

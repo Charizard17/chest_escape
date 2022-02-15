@@ -19,10 +19,6 @@ class Wall extends SpriteComponent
 
   @override
   Future<void>? onLoad() async {
-    final sprite = await Sprite.load('wall.png');
-
-    this.sprite = sprite;
-
     return super.onLoad();
   }
 

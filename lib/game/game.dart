@@ -36,12 +36,15 @@ class WallPasserGame extends FlameGame
       'background_4.png',
       'background_5.png',
       'darksoldier_spritesheet.png',
-      'wall.png',
+      'wall_1.png',
+      'wall_2.png',
+      'wall_3.png',
+      'wall_4.png',
+      'wall_5.png',
     ]);
 
-    final backgroundImage = images.fromCache('background_1.png');
     _background = SpriteComponent(
-      sprite: Sprite(backgroundImage),
+      sprite: Sprite(images.fromCache('background_1.png')),
       size: gameCanvasSize,
       position: gameTopPadding,
     );
@@ -72,7 +75,7 @@ class WallPasserGame extends FlameGame
     add(_player);
 
     _wallManager = WallManager(
-      sprite: Sprite(images.fromCache('wall.png')),
+      sprite: Sprite(images.fromCache('wall_1.png')),
     );
     add(_wallManager);
 
@@ -113,18 +116,22 @@ class WallPasserGame extends FlameGame
     if (_player.playerScore >= 50) {
       _gameLevel = 2;
       this._background.sprite = Sprite(images.fromCache('background_2.png'));
+      this._wallManager.sprite = Sprite(images.fromCache('wall_2.png'));
     }
     if (_player.playerScore >= 150) {
       _gameLevel = 3;
       this._background.sprite = Sprite(images.fromCache('background_3.png'));
+      this._wallManager.sprite = Sprite(images.fromCache('wall_3.png'));
     }
     if (_player.playerScore >= 500) {
       _gameLevel = 4;
       this._background.sprite = Sprite(images.fromCache('background_4.png'));
+      this._wallManager.sprite = Sprite(images.fromCache('wall_4.png'));
     }
     if (_player.playerScore >= 1000) {
       _gameLevel = 5;
       this._background.sprite = Sprite(images.fromCache('background_5.png'));
+      this._wallManager.sprite = Sprite(images.fromCache('wall_5.png'));
     }
 
     _commandList.forEach((command) {
