@@ -22,11 +22,12 @@ class GameOverMenu extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 50.0),
+              padding: const EdgeInsets.only(bottom: 50.0),
               child: Text(
                 'Game Over',
                 style: TextStyle(
                   fontSize: 50,
+                  fontWeight: FontWeight.bold,
                   color: Colors.amber,
                 ),
               ),

@@ -22,11 +22,12 @@ class PauseMenu extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 50.0),
+              padding: const EdgeInsets.only(bottom: 50.0),
               child: Text(
                 'Paused',
                 style: TextStyle(
                   fontSize: 50,
+                  fontWeight: FontWeight.bold,
                   color: Colors.amber,
                 ),
               ),

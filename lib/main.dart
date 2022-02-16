@@ -2,6 +2,7 @@ import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
 
 import './screens/game_play.dart';
+import './screens/main_menu.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -9,7 +10,7 @@ void main() async {
 
   runApp(
     MaterialApp(
-      home: GamePlay(),
+      home: MainMenu(),
     ),
   );
 }
