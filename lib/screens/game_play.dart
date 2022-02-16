@@ -5,6 +5,7 @@ import '../game/game.dart';
 import '../overlays/game_over_menu.dart';
 import '../overlays/pause_menu.dart';
 import '../overlays/pause_button.dart';
+import './main_menu.dart';
 
 final WallPasserGame _wallPasserGame = WallPasserGame();
 
@@ -19,8 +20,10 @@ class GamePlay extends StatelessWidget {
         child: Scaffold(
           body: GameWidget(
             game: _wallPasserGame,
-            initialActiveOverlays: [PauseButton.ID],
+            initialActiveOverlays: [MainMenu.ID],
             overlayBuilderMap: {
+              MainMenu.ID: (BuildContext context, WallPasserGame gameRef) =>
+                  MainMenu(gameRef: gameRef),
               PauseButton.ID: (BuildContext context, WallPasserGame gameRef) =>
                   PauseButton(gameRef: gameRef),
               PauseMenu.ID: (BuildContext context, WallPasserGame gameRef) =>

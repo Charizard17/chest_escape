@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:wall_passer_flame_game/overlays/pause_button.dart';
 
 import '../game/game.dart';
+import './pause_button.dart';
+import '../screens/main_menu.dart';
 
 class PauseMenu extends StatelessWidget {
   static const String ID = 'PauseMenu';
@@ -116,9 +117,9 @@ class PauseMenu extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  // gameRef.overlays.remove(PauseMenu.ID);
-                  // gameRef.reset();
-                  // gameRef.resumeEngine();
+                  gameRef.overlays.remove(PauseMenu.ID);
+                  gameRef.overlays.add(MainMenu.ID);
+                  gameRef.reset();
                 },
               ),
             ),

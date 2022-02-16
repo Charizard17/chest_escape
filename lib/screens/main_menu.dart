@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 
-import './game_play.dart';
+import '../overlays/pause_button.dart';
+import '../game/game.dart';
 
 class MainMenu extends StatelessWidget {
   static const String ID = 'MainMenu';
+  final WallPasserGame gameRef;
 
-  const MainMenu({Key? key}) : super(key: key);
+  const MainMenu({
+    Key? key,
+    required this.gameRef,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -52,11 +57,10 @@ class MainMenu extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (context) => const GamePlay(),
-                      ),
-                    );
+                    gameRef.overlays.remove(MainMenu.ID);
+                    gameRef.overlays.add(PauseButton.ID);
+                    gameRef.reset();
+                    gameRef.resumeEngine();
                   },
                 ),
               ),

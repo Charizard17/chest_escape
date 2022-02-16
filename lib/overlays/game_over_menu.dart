@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../screens/main_menu.dart';
 import './pause_button.dart';
 import '../game/game.dart';
 
@@ -86,9 +87,9 @@ class GameOverMenu extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  // gameRef.overlays.remove(PauseMenu.ID);
-                  // gameRef.reset();
-                  // gameRef.resumeEngine();
+                  gameRef.overlays.remove(GameOverMenu.ID);
+                  gameRef.overlays.add(MainMenu.ID);
+                  gameRef.reset();
                 },
               ),
             ),
