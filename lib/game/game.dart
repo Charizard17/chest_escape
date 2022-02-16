@@ -10,6 +10,7 @@ import './player.dart';
 import './wall_manager.dart';
 import './wall.dart';
 import '../overlays/game_over_menu.dart';
+import '../overlays/pause_button.dart';
 
 class WallPasserGame extends FlameGame
     with HasTappables, HasDraggables, HasCollidables, GameCanvasSize {
@@ -157,6 +158,7 @@ class WallPasserGame extends FlameGame
 
     if (_player.playerHealth <= 0 && !camera.shaking) {
       this.pauseEngine();
+      overlays.remove(PauseButton.ID);
       overlays.add(GameOverMenu.ID);
     }
   }

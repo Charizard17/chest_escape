@@ -18,86 +18,108 @@ class PauseMenu extends StatelessWidget {
       child: Container(
         color: Colors.black.withOpacity(0.4),
         width: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.all(10),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              'Paused',
-              style: TextStyle(
-                fontSize: 40,
-                color: Colors.amber,
-              ),
-            ),
-            SizedBox(height: 10),
-            ElevatedButton.icon(
-              icon: Icon(
-                Icons.restart_alt,
-                color: Colors.black,
-                size: 30,
-              ),
-              label: Text(
-                'Resume',
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 50.0),
+              child: Text(
+                'Paused',
                 style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
+                  fontSize: 50,
+                  color: Colors.amber,
                 ),
               ),
-              style: ElevatedButton.styleFrom(
-                primary: Colors.amber,
-              ),
-              onPressed: () {
-                gameRef.overlays.remove(PauseMenu.ID);
-                gameRef.overlays.add(PauseButton.ID);
-                gameRef.resumeEngine();
-              },
             ),
-            SizedBox(height: 10),
-            ElevatedButton.icon(
-              icon: Icon(
-                Icons.restart_alt,
-                color: Colors.black,
-                size: 30,
-              ),
-              label: Text(
-                'Restart',
-                style: TextStyle(
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.5,
+              height: MediaQuery.of(context).size.width * 0.12,
+              child: ElevatedButton.icon(
+                icon: Icon(
+                  Icons.play_circle_outline_rounded,
                   color: Colors.black,
-                  fontSize: 20,
+                  size: 30,
                 ),
+                label: Text(
+                  'Resume',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.amber,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                ),
+                onPressed: () {
+                  gameRef.overlays.remove(PauseMenu.ID);
+                  gameRef.overlays.add(PauseButton.ID);
+                  gameRef.resumeEngine();
+                },
               ),
-              style: ElevatedButton.styleFrom(
-                primary: Colors.amber,
-              ),
-              onPressed: () {
-                gameRef.overlays.remove(PauseMenu.ID);
-                gameRef.overlays.add(PauseButton.ID);
-                gameRef.reset();
-                gameRef.resumeEngine();
-              },
             ),
-            SizedBox(height: 10),
-            ElevatedButton.icon(
-              icon: Icon(
-                Icons.menu_rounded,
-                color: Colors.black,
-                size: 30,
-              ),
-              label: Text(
-                'Main Menu',
-                style: TextStyle(
+            SizedBox(height: 20),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.5,
+              height: MediaQuery.of(context).size.width * 0.12,
+              child: ElevatedButton.icon(
+                icon: Icon(
+                  Icons.restart_alt,
                   color: Colors.black,
-                  fontSize: 20,
+                  size: 30,
                 ),
+                label: Text(
+                  'Restart',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.amber,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                ),
+                onPressed: () {
+                  gameRef.overlays.remove(PauseMenu.ID);
+                  gameRef.overlays.add(PauseButton.ID);
+                  gameRef.reset();
+                  gameRef.resumeEngine();
+                },
               ),
-              style: ElevatedButton.styleFrom(
-                primary: Colors.amber,
+            ),
+            SizedBox(height: 20),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.5,
+              height: MediaQuery.of(context).size.width * 0.12,
+              child: ElevatedButton.icon(
+                icon: Icon(
+                  Icons.menu_rounded,
+                  color: Colors.black,
+                  size: 30,
+                ),
+                label: Text(
+                  'Main Menu',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.amber,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                ),
+                onPressed: () {
+                  // gameRef.overlays.remove(PauseMenu.ID);
+                  // gameRef.reset();
+                  // gameRef.resumeEngine();
+                },
               ),
-              onPressed: () {
-                // gameRef.overlays.remove(PauseMenu.ID);
-                // gameRef.reset();
-                // gameRef.resumeEngine();
-              },
             ),
           ],
         ),
