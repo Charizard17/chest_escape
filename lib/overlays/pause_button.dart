@@ -27,7 +27,7 @@ class PauseButton extends StatelessWidget {
         icon: Icon(
           Icons.pause_circle_outline_rounded,
           size: 40,
-          color: Colors.white,
+          color: Colors.amber,
         ),
         onPressed: () {
           gameRef.pauseEngine();

@@ -10,6 +10,7 @@ import './player.dart';
 import './wall_manager.dart';
 import './wall.dart';
 import '../overlays/game_over_menu.dart';
+import '../overlays/pause_menu.dart';
 import '../overlays/pause_button.dart';
 
 class WallPasserGame extends FlameGame
@@ -56,11 +57,11 @@ class WallPasserGame extends FlameGame
     final joystick = JoystickComponent(
       knob: CircleComponent(
         radius: gameCanvasSize.x / 12,
-        paint: BasicPalette.white.withAlpha(100).paint(),
+        paint: Paint()..color = const Color(0xffffbf00).withAlpha(150),
       ),
       background: RectangleComponent(
         size: Vector2(gameCanvasSize.x / 2, gameCanvasSize.x / 6),
-        paint: BasicPalette.white.withAlpha(50).paint(),
+        paint: Paint()..color = const Color(0xffffbf00).withAlpha(50),
       ),
       position: Vector2(gameCanvasSize.x / 2, gameCanvasSize.y + 150),
     );
@@ -96,7 +97,7 @@ class WallPasserGame extends FlameGame
       textRenderer: TextPaint(
         style: TextStyle(
           fontSize: 18,
-          color: Colors.white,
+          color: Colors.amber,
         ),
       ),
     );
@@ -109,7 +110,7 @@ class WallPasserGame extends FlameGame
       textRenderer: TextPaint(
         style: TextStyle(
           fontSize: 18,
-          color: Colors.white,
+          color: Colors.amber,
         ),
       ),
     );
@@ -118,6 +119,29 @@ class WallPasserGame extends FlameGame
     add(_playerHealth);
 
     return super.onLoad();
+  }
+
+  @override
+  Color backgroundColor() {
+    return Colors.black.withOpacity(0.8);
+  }
+
+  @override
+  void lifecycleStateChange(AppLifecycleState state) {
+    switch (state) {
+      case AppLifecycleState.resumed:
+        break;
+      case AppLifecycleState.paused:
+      case AppLifecycleState.detached:
+      case AppLifecycleState.inactive:
+        if (this._player.playerHealth > 0) {
+          this.pauseEngine();
+          this.overlays.remove(PauseButton.ID);
+          this.overlays.add(PauseMenu.ID);
+        }
+    }
+
+    super.lifecycleStateChange(state);
   }
 
   @override
@@ -169,8 +193,8 @@ class WallPasserGame extends FlameGame
   void render(Canvas canvas) {
     canvas.drawRect(
       Rect.fromLTWH(gameCanvasSize.x - 130, 10,
-          1.25 * _player.playerHealth.toDouble(), 25),
-      Paint()..color = Color.fromARGB(255, 135, 11, 11),
+          1.25 * _player.playerHealth.toDouble(), 21),
+      Paint()..color = Color.fromARGB(255, 125, 10, 10),
     );
     super.render(canvas);
   }
