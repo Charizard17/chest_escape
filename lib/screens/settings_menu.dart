@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
-import './settings_menu.dart';
-import '../overlays/pause_button.dart';
+import './main_menu.dart';
 import '../game/game.dart';
 
-class MainMenu extends StatelessWidget {
-  static const String ID = 'MainMenu';
+class SettingsMenu extends StatelessWidget {
+  static const String ID = 'SettingsMenu';
   final WallPasserGame gameRef;
 
-  const MainMenu({
+  const SettingsMenu({
     Key? key,
     required this.gameRef,
   }) : super(key: key);
@@ -27,7 +26,7 @@ class MainMenu extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(bottom: 50.0),
                 child: Text(
-                  'Wall Passer',
+                  'Settings',
                   style: TextStyle(
                     fontSize: 50,
                     fontWeight: FontWeight.bold,
@@ -35,34 +34,39 @@ class MainMenu extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.5,
-                height: MediaQuery.of(context).size.width * 0.12,
-                child: ElevatedButton.icon(
-                  icon: Icon(
-                    Icons.play_circle_outline_rounded,
-                    color: Colors.black,
-                    size: 30,
-                  ),
-                  label: Text(
-                    'Start Game',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  children: [
+                    SwitchListTile(
+                      title: Text(
+                        'Sound Effects',
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.amber,
+                        ),
+                      ),
+                      activeColor: Colors.amber,
+                      inactiveThumbColor: Colors.grey,
+                      inactiveTrackColor: Colors.black,
+                      value: true,
+                      onChanged: (_) {},
                     ),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.amber,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(6),
+                    SwitchListTile(
+                      title: Text(
+                        'Background Music',
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.amber,
+                        ),
+                      ),
+                      activeColor: Colors.amber,
+                      inactiveThumbColor: Colors.grey,
+                      inactiveTrackColor: Colors.black,
+                      value: true,
+                      onChanged: (_) {},
                     ),
-                  ),
-                  onPressed: () {
-                    gameRef.overlays.remove(MainMenu.ID);
-                    gameRef.overlays.add(PauseButton.ID);
-                    gameRef.reset();
-                    gameRef.resumeEngine();
-                  },
+                  ],
                 ),
               ),
               SizedBox(height: 20),
@@ -71,12 +75,12 @@ class MainMenu extends StatelessWidget {
                 height: MediaQuery.of(context).size.width * 0.12,
                 child: ElevatedButton.icon(
                   icon: Icon(
-                    Icons.settings,
+                    Icons.keyboard_arrow_left_rounded,
                     color: Colors.black,
                     size: 30,
                   ),
                   label: Text(
-                    'Settings',
+                    'Back',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 20,
@@ -89,8 +93,8 @@ class MainMenu extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    gameRef.overlays.remove(MainMenu.ID);
-                    gameRef.overlays.add(SettingsMenu.ID);
+                    gameRef.overlays.remove(SettingsMenu.ID);
+                    gameRef.overlays.add(MainMenu.ID);
                   },
                 ),
               ),

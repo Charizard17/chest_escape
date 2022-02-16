@@ -30,6 +30,8 @@ class WallPasserGame extends FlameGame
 
   @override
   Future<void>? onLoad() async {
+    pauseEngine();
+
     await images.loadAll([
       'background_1.png',
       'background_2.png',
