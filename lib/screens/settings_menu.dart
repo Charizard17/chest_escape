@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import './main_menu.dart';
 import '../game/game.dart';
+import '../helpers/settings.dart';
 
 class SettingsMenu extends StatelessWidget {
   static const String ID = 'SettingsMenu';
@@ -38,33 +40,49 @@ class SettingsMenu extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: [
-                    SwitchListTile(
-                      title: Text(
-                        'Sound Effects',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.amber,
-                        ),
-                      ),
-                      activeColor: Colors.amber,
-                      inactiveThumbColor: Colors.grey,
-                      inactiveTrackColor: Colors.black,
-                      value: true,
-                      onChanged: (_) {},
+                    Selector<Settings, bool>(
+                      selector: (context, settings) => settings.backgroundMusic,
+                      builder: (context, value, child) {
+                        return SwitchListTile(
+                          title: Text(
+                            'Sound Effects',
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.amber,
+                            ),
+                          ),
+                          activeColor: Colors.amber,
+                          inactiveThumbColor: Colors.grey,
+                          inactiveTrackColor: Colors.black,
+                          value: value,
+                          onChanged: (newValue) {
+                            Provider.of<Settings>(context, listen: false)
+                                .backgroundMusic = newValue;
+                          },
+                        );
+                      },
                     ),
-                    SwitchListTile(
-                      title: Text(
-                        'Background Music',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.amber,
-                        ),
-                      ),
-                      activeColor: Colors.amber,
-                      inactiveThumbColor: Colors.grey,
-                      inactiveTrackColor: Colors.black,
-                      value: true,
-                      onChanged: (_) {},
+                    Selector<Settings, bool>(
+                      selector: (context, settings) => settings.soundEffects,
+                      builder: (context, value, child) {
+                        return SwitchListTile(
+                          title: Text(
+                            'Background Music',
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.amber,
+                            ),
+                          ),
+                          activeColor: Colors.amber,
+                          inactiveThumbColor: Colors.grey,
+                          inactiveTrackColor: Colors.black,
+                          value: value,
+                          onChanged: (newValue) {
+                            Provider.of<Settings>(context, listen: false)
+                                .soundEffects = newValue;
+                          },
+                        );
+                      },
                     ),
                   ],
                 ),
