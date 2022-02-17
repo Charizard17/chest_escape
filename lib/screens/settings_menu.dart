@@ -68,7 +68,6 @@ class SettingsMenu extends StatelessWidget {
                           inactiveTrackColor: Colors.black,
                           value: backgroundMusic,
                           onChanged: (bool newValue) {
-                            print(backgroundMusic);
                             Provider.of<Settings>(context, listen: false)
                                 .backgroundMusic = newValue;
                             if (newValue) {

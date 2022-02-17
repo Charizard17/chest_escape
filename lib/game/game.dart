@@ -205,7 +205,7 @@ class WallPasserGame extends FlameGame
       _scoreToGameLevelIndex *= 3;
       ++_gameLevel;
       this._background.sprite =
-          Sprite(images.fromCache('background_$_gameLevel.png'));
+          Sprite(images.fromCache('background_$gameLevel.png'));
       this._wallManager.sprite =
           Sprite(images.fromCache('wall_$_gameLevel.png'));
     }
