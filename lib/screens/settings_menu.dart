@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import './main_menu.dart';
 import '../game/game.dart';
-import '../helpers/settings.dart';
+import '../models/settings.dart';
 
 class SettingsMenu extends StatelessWidget {
   static const String ID = 'SettingsMenu';

@@ -4,7 +4,7 @@ import 'package:flame/components.dart';
 
 import './game.dart';
 import './wall.dart';
-import '../helpers/game_canvas_size.dart';
+import '../models/game_canvas_size.dart';
 
 class WallManager extends Component
     with HasGameRef<WallPasserGame>, GameCanvasSize {

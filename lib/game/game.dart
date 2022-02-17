@@ -3,12 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/palette.dart';
+import 'package:hive/hive.dart';
 
-import '../helpers/game_canvas_size.dart';
-import '../helpers/command.dart';
-import './player.dart';
+import './audio_manager.dart';
 import './wall_manager.dart';
 import './wall.dart';
+import './player.dart';
+import '../models/command.dart';
+import '../models/settings.dart';
+import '../models/game_canvas_size.dart';
 import '../overlays/game_over_menu.dart';
 import '../overlays/pause_menu.dart';
 import '../overlays/pause_button.dart';
@@ -40,7 +43,7 @@ class WallPasserGame extends FlameGame
   late SpriteComponent _background;
   late TextComponent _playerScore;
   late TextComponent _playerHealth;
-
+  late Settings settings;
   // set game level to 1 on the beginning and set a getter for it
   int _gameLevel = 1;
   int get gameLevel => _gameLevel;
@@ -56,11 +59,19 @@ class WallPasserGame extends FlameGame
     // on beginning the app starts using this FlameGame class
     // main_menu, settings, and other screens are overlays
     // users see the main menu, but flame game continues in the background
-    // thats why the game should be paused
+    // thats why the game should be paused initially
     pauseEngine();
+
+    // read settings from hive
+    settings = await _readSettings();
 
     // load all images
     await images.loadAll(_imageAssets);
+
+    // initialize AudioPlayer
+    await AudioManager.instance.init(_audioAssets, settings);
+
+    AudioManager.instance.startBackgroundMusic('SynthBomb.wav');
 
     // initialize game background with sprite component
     // sprite image will change by game level
@@ -153,6 +164,17 @@ class WallPasserGame extends FlameGame
     return Colors.black.withOpacity(0.8);
   }
 
+  // this method reads the settings from the hive box
+  Future<Settings> _readSettings() async {
+  final box = await Hive.openBox<Settings>(Settings.SETTINGS_BOX);
+  final settings = box.get(Settings.SETTINGS_KEY);
+  if (settings == null) {
+    box.put(Settings.SETTINGS_KEY,
+        Settings(soundEffects: true, backgroundMusic: true));
+  }
+  return box.get(Settings.SETTINGS_KEY)!;
+}
+
   // if player minimize the app or open an another app
   // then it means app lifecycle state is not resumed
   // if it is so, pause the game and show pause menu
@@ -205,9 +227,10 @@ class WallPasserGame extends FlameGame
 
     // if player is dead show game over menu
     if (_player.playerHealth <= 0 && !camera.shaking) {
-      this.pauseEngine();
       overlays.remove(PauseButton.ID);
       overlays.add(GameOverMenu.ID);
+      this.pauseEngine();
+      AudioManager.instance.pauseBackgroundMusic();
     }
   }
 

@@ -1,13 +1,17 @@
 import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 
 import './screens/game_play.dart';
-import './helpers/settings.dart';
+import './models/settings.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Flame.device.fullScreen();
+
+  await initHive();
 
   runApp(
     MultiProvider(
@@ -32,4 +36,11 @@ void main() async {
       ),
     ),
   );
+}
+
+Future<void> initHive() async {
+  final dir = await getApplicationDocumentsDirectory();
+  Hive.init(dir.path);
+
+  Hive.registerAdapter(SettingsAdapter());
 }

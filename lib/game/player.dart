@@ -3,8 +3,9 @@ import 'package:flame/geometry.dart';
 import 'package:flame/sprite.dart';
 
 import './game.dart';
-import '../helpers/game_canvas_size.dart';
+import './audio_manager.dart';
 import './wall.dart';
+import '../models/game_canvas_size.dart';
 
 class Player extends SpriteAnimationComponent
     with GameCanvasSize, HasHitboxes, Collidable, HasGameRef<WallPasserGame> {
@@ -86,6 +87,7 @@ class Player extends SpriteAnimationComponent
   @override
   void onCollision(Set<Vector2> intersectionPoints, Collidable other) {
     if (other is Wall) {
+      AudioManager.instance.playSoundEffects('wall_hit_sound.mp3');
       _playerHealth -= 10;
       if (_playerHealth <= 0) {
         _playerHealth = 0;
