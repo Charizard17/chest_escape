@@ -10,7 +10,10 @@ class WallManager extends Component
     with HasGameRef<WallPasserGame>, GameCanvasSize {
   final int _baseNumber = 8;
   int _gameLevel = 1;
+  double _speed = 1.4;
+  
   Random random = Random();
+
   late Timer _timer;
   late Sprite sprite;
 
@@ -40,6 +43,7 @@ class WallManager extends Component
             position + Vector2(i * this.gameCanvasSize.x / _baseNumber, 0),
         size: initialSize,
         anchor: Anchor.center,
+        speed: _speed,
       );
 
       if (randomNumber != i) {
@@ -60,11 +64,10 @@ class WallManager extends Component
     _timer.update(dt);
 
     if (_gameLevel < gameRef.gameLevel) {
+      _speed = 1.4 + 0.4 * _gameLevel;
       _gameLevel = gameRef.gameLevel;
 
       var newLimit = (3 / (1 + (0.05 * _gameLevel)));
-      print(newLimit);
-
       _timer.stop();
       _timer = Timer(newLimit, repeat: true, onTick: _spawnWalls);
       _timer.start();
@@ -72,6 +75,8 @@ class WallManager extends Component
   }
 
   void reset() {
+    this._speed = 1.4;
+    this._gameLevel = 1;
     _timer.stop();
     _timer = Timer(3, repeat: true, onTick: _spawnWalls);
     _timer.start();
