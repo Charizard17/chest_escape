@@ -5,7 +5,7 @@ import 'pause_menu.dart';
 
 class PauseButton extends StatelessWidget {
   static const String ID = 'PauseButton';
-  final WallPasserGame gameRef;
+  final ChestEscape gameRef;
 
   const PauseButton({
     Key? key,

@@ -6,7 +6,7 @@ import '../game/game.dart';
 
 class MainMenu extends StatelessWidget {
   static const String ID = 'MainMenu';
-  final WallPasserGame gameRef;
+  final ChestEscape gameRef;
 
   const MainMenu({
     Key? key,
@@ -32,15 +32,15 @@ class MainMenu extends StatelessWidget {
           width: MediaQuery.of(context).size.width,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.only(bottom: 50.0),
+                padding: const EdgeInsets.only(bottom: 100),
                 child: Text(
-                  'Wall Passer',
+                  'ChestEscape',
                   style: TextStyle(
                     fontSize: 50,
                     fontWeight: FontWeight.bold,
+                    fontFamily: 'Texturina',
                     color: Colors.amber,
                   ),
                 ),

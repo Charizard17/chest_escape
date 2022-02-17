@@ -8,7 +8,7 @@ import '../overlays/game_over_menu.dart';
 import '../overlays/pause_menu.dart';
 import '../overlays/pause_button.dart';
 
-final WallPasserGame _wallPasserGame = WallPasserGame();
+final ChestEscape _chestEscape = ChestEscape();
 
 class GamePlay extends StatelessWidget {
   const GamePlay({Key? key}) : super(key: key);
@@ -20,18 +20,18 @@ class GamePlay extends StatelessWidget {
       child: SafeArea(
         child: Scaffold(
           body: GameWidget(
-            game: _wallPasserGame,
+            game: _chestEscape,
             initialActiveOverlays: [MainMenu.ID],
             overlayBuilderMap: {
-              MainMenu.ID: (BuildContext context, WallPasserGame gameRef) =>
+              MainMenu.ID: (BuildContext context, ChestEscape gameRef) =>
                   MainMenu(gameRef: gameRef),
-              SettingsMenu.ID: (BuildContext context, WallPasserGame gameRef) =>
+              SettingsMenu.ID: (BuildContext context, ChestEscape gameRef) =>
                   SettingsMenu(gameRef: gameRef),
-              PauseButton.ID: (BuildContext context, WallPasserGame gameRef) =>
+              PauseButton.ID: (BuildContext context, ChestEscape gameRef) =>
                   PauseButton(gameRef: gameRef),
-              PauseMenu.ID: (BuildContext context, WallPasserGame gameRef) =>
+              PauseMenu.ID: (BuildContext context, ChestEscape gameRef) =>
                   PauseMenu(gameRef: gameRef),
-              GameOverMenu.ID: (BuildContext context, WallPasserGame gameRef) =>
+              GameOverMenu.ID: (BuildContext context, ChestEscape gameRef) =>
                   GameOverMenu(gameRef: gameRef),
             },
           ),

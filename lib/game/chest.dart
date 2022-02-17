@@ -6,14 +6,14 @@ import './player.dart';
 import '../models/command.dart';
 import '../models/game_canvas_size.dart';
 
-class Wall extends SpriteComponent
-    with HasHitboxes, Collidable, HasGameRef<WallPasserGame>, GameCanvasSize {
+class Chest extends SpriteComponent
+    with HasHitboxes, Collidable, HasGameRef<ChestEscape>, GameCanvasSize {
   int _increaseScoreBy = 1;
   int _gameLevel = 1;
 
   late double speed;
 
-  Wall({
+  Chest({
     required Sprite? sprite,
     required Vector2? position,
     required Vector2? size,
@@ -23,7 +23,7 @@ class Wall extends SpriteComponent
 
   @override
   void update(double dt) {
-    // update wall horizontal coordinate by speed variable
+    // update chest horizontal coordinate by speed variable
     this.position.y += speed;
 
     if (this.position.y > gameCanvasSize.y + this.size.y / 2) {

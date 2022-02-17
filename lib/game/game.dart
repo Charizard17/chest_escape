@@ -6,8 +6,8 @@ import 'package:flame/palette.dart';
 import 'package:hive/hive.dart';
 
 import './audio_manager.dart';
-import './wall_manager.dart';
-import './wall.dart';
+import 'chest_manager.dart';
+import 'chest.dart';
 import './player.dart';
 import '../models/command.dart';
 import '../models/settings.dart';
@@ -16,7 +16,7 @@ import '../overlays/game_over_menu.dart';
 import '../overlays/pause_menu.dart';
 import '../overlays/pause_button.dart';
 
-class WallPasserGame extends FlameGame
+class ChestEscape extends FlameGame
     with HasTappables, HasDraggables, HasCollidables, GameCanvasSize {
   // following variables necessary for initializing image and audio assets
   static const _imageAssets = [
@@ -26,20 +26,20 @@ class WallPasserGame extends FlameGame
     'background_4.png',
     'background_5.png',
     'darksoldier_spritesheet.png',
-    'wall_1.png',
-    'wall_2.png',
-    'wall_3.png',
-    'wall_4.png',
-    'wall_5.png',
+    'chest_1.png',
+    'chest_2.png',
+    'chest_3.png',
+    'chest_4.png',
+    'chest_5.png',
   ];
 
   static const _audioAssets = [
     'SynthBomb.wav',
-    'wall_hit_sound.mp3',
+    'hit_sound.mp3',
   ];
 
   late Player _player;
-  late WallManager _wallManager;
+  late ChestManager _chestManager;
   late SpriteComponent _background;
   late TextComponent _playerScore;
   late TextComponent _playerHealth;
@@ -118,20 +118,21 @@ class WallPasserGame extends FlameGame
     );
     add(playerPlatform);
 
-    // add wall manager to the game. it generates walls automatically
-    _wallManager = WallManager(
-      sprite: Sprite(images.fromCache('wall_1.png')),
+    // add chest manager to the game. it generates chests automatically
+    _chestManager = ChestManager(
+      sprite: Sprite(images.fromCache('chest_1.png')),
     );
-    add(_wallManager);
+    add(_chestManager);
 
     // show player score as flame text component
-    // update score if walls destroyed or player hits a wall
+    // update score if chests destroyed or player hits a chest
     _playerScore = TextComponent(
       text: 'Score: 0',
-      position: Vector2(10, 10),
+      position: Vector2(10, 7),
       textRenderer: TextPaint(
         style: TextStyle(
-          fontSize: 18,
+          fontFamily: 'Texturina',
+          fontSize: 20,
           color: Colors.amber,
         ),
       ),
@@ -140,13 +141,14 @@ class WallPasserGame extends FlameGame
     add(_playerScore);
 
     // show player health as flame text component
-    // update player health if a wall hits to the player
+    // update player health if a chest hits to the player
     _playerHealth = TextComponent(
       text: 'Health: 100%',
-      position: Vector2(canvasSize.x - 10, 10),
+      position: Vector2(canvasSize.x - 10, 7),
       textRenderer: TextPaint(
         style: TextStyle(
-          fontSize: 18,
+          fontFamily: 'Texturina',
+          fontSize: 20,
           color: Colors.amber,
         ),
       ),
@@ -200,14 +202,14 @@ class WallPasserGame extends FlameGame
     super.update(dt);
 
     // update game level
-    // change background image sprite and wall image sprite by game level
+    // change background image sprite and chest image sprite by game level
     if (_player.playerScore > _scoreToGameLevelIndex) {
       _scoreToGameLevelIndex *= 3;
       ++_gameLevel;
       this._background.sprite =
           Sprite(images.fromCache('background_$gameLevel.png'));
-      this._wallManager.sprite =
-          Sprite(images.fromCache('wall_$_gameLevel.png'));
+      this._chestManager.sprite =
+          Sprite(images.fromCache('chest_$_gameLevel.png'));
     }
 
     // this lines are required for command class implementation
@@ -273,17 +275,17 @@ class WallPasserGame extends FlameGame
   void reset() {
     this._scoreToGameLevelIndex = 50;
     this._background.sprite = Sprite(images.fromCache('background_1.png'));
-    this._wallManager.sprite = Sprite(images.fromCache('wall_1.png'));
+    this._chestManager.sprite = Sprite(images.fromCache('chest_1.png'));
     this._gameLevel = 1;
     _player.reset();
-    _wallManager.reset();
+    _chestManager.reset();
 
-    children.whereType<Wall>().forEach((child) {
+    children.whereType<Chest>().forEach((child) {
       child.removeFromParent();
     });
 
-    final command = Command<Wall>(action: (wall) {
-      wall.reset();
+    final command = Command<Chest>(action: (chest) {
+      chest.reset();
     });
     addCommand(command);
   }

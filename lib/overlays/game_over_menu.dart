@@ -6,7 +6,7 @@ import '../game/game.dart';
 
 class GameOverMenu extends StatelessWidget {
   static const String ID = 'GameOverMenu';
-  final WallPasserGame gameRef;
+  final ChestEscape gameRef;
 
   const GameOverMenu({
     Key? key,
@@ -23,7 +23,7 @@ class GameOverMenu extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.only(bottom: 50.0),
+              padding: const EdgeInsets.only(bottom: 80.0),
               child: Text(
                 'Game Over',
                 style: TextStyle(

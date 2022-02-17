@@ -3,31 +3,31 @@ import 'dart:math';
 import 'package:flame/components.dart';
 
 import './game.dart';
-import './wall.dart';
+import 'chest.dart';
 import '../models/game_canvas_size.dart';
 
-class WallManager extends Component
-    with HasGameRef<WallPasserGame>, GameCanvasSize {
+class ChestManager extends Component
+    with HasGameRef<ChestEscape>, GameCanvasSize {
   final int _baseNumber = 8;
   int _gameLevel = 1;
   double _speed = 1.4;
-  
+
   Random random = Random();
 
   late Timer _timer;
   late Sprite sprite;
 
-  WallManager({
+  ChestManager({
     required this.sprite,
   }) : super() {}
 
   @override
   Future<void>? onLoad() {
-    _timer = Timer(3, repeat: true, onTick: _spawnWalls);
+    _timer = Timer(3, repeat: true, onTick: _spawnChests);
     return super.onLoad();
   }
 
-  void _spawnWalls() {
+  void _spawnChests() {
     Vector2 initialSize = Vector2(this.gameCanvasSize.x / _baseNumber,
         this.gameCanvasSize.x / _baseNumber);
     Vector2 position = gameTopPadding +
@@ -37,7 +37,7 @@ class WallManager extends Component
     final randomNumber = random.nextInt(_baseNumber);
 
     for (var i = 0; i < _baseNumber; ++i) {
-      Wall wall = Wall(
+      Chest chest = Chest(
         sprite: sprite,
         position:
             position + Vector2(i * this.gameCanvasSize.x / _baseNumber, 0),
@@ -47,7 +47,7 @@ class WallManager extends Component
       );
 
       if (randomNumber != i) {
-        gameRef.add(wall);
+        gameRef.add(chest);
       }
     }
   }
@@ -69,7 +69,7 @@ class WallManager extends Component
 
       var newLimit = (3 / (1 + (0.05 * _gameLevel)));
       _timer.stop();
-      _timer = Timer(newLimit, repeat: true, onTick: _spawnWalls);
+      _timer = Timer(newLimit, repeat: true, onTick: _spawnChests);
       _timer.start();
     }
   }
@@ -78,7 +78,7 @@ class WallManager extends Component
     this._speed = 1.4;
     this._gameLevel = 1;
     _timer.stop();
-    _timer = Timer(3, repeat: true, onTick: _spawnWalls);
+    _timer = Timer(3, repeat: true, onTick: _spawnChests);
     _timer.start();
   }
 }

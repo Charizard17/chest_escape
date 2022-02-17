@@ -4,11 +4,11 @@ import 'package:flame/sprite.dart';
 
 import './game.dart';
 import './audio_manager.dart';
-import './wall.dart';
+import 'chest.dart';
 import '../models/game_canvas_size.dart';
 
 class Player extends SpriteAnimationComponent
-    with GameCanvasSize, HasHitboxes, Collidable, HasGameRef<WallPasserGame> {
+    with GameCanvasSize, HasHitboxes, Collidable, HasGameRef<ChestEscape> {
   final JoystickComponent joystick;
   final SpriteSheet spriteSheet;
   final double _speed = 200;
@@ -86,8 +86,8 @@ class Player extends SpriteAnimationComponent
 
   @override
   void onCollision(Set<Vector2> intersectionPoints, Collidable other) {
-    if (other is Wall) {
-      AudioManager.instance.playSoundEffects('wall_hit_sound.mp3');
+    if (other is Chest) {
+      AudioManager.instance.playSoundEffects('hit_sound.mp3');
       _playerHealth -= 10;
       if (_playerHealth <= 0) {
         _playerHealth = 0;

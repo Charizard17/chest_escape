@@ -32,6 +32,9 @@ void main() async {
         );
       },
       child: MaterialApp(
+        theme: ThemeData(
+          fontFamily: 'Texturina',
+        ),
         home: GamePlay(),
       ),
     ),

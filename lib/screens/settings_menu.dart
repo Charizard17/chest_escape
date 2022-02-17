@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:wall_passer_flame_game/game/audio_manager.dart';
 
 import './main_menu.dart';
 import '../game/game.dart';
+import '../game/audio_manager.dart';
 import '../models/settings.dart';
 
 class SettingsMenu extends StatelessWidget {
   static const String ID = 'SettingsMenu';
-  final WallPasserGame gameRef;
+  final ChestEscape gameRef;
 
   const SettingsMenu({
     Key? key,
@@ -37,7 +37,7 @@ class SettingsMenu extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.only(bottom: 50.0),
+                padding: const EdgeInsets.only(bottom: 70.0),
                 child: Text(
                   'Settings',
                   style: TextStyle(
@@ -80,6 +80,7 @@ class SettingsMenu extends StatelessWidget {
                         );
                       },
                     ),
+                    SizedBox(height: 10),
                     Selector<Settings, bool>(
                       selector: (context, settings) => settings.soundEffects,
                       builder: (context, soundEffects, _) {
