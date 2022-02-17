@@ -44,6 +44,7 @@ class WallPasserGame extends FlameGame
   // set game level to 1 on the beginning and set a getter for it
   int _gameLevel = 1;
   int get gameLevel => _gameLevel;
+  int _scoreToGameLevelIndex = 50;
 
   // initialize command list and add later command list
   // these lists is reqiured for command class implementation
@@ -178,25 +179,13 @@ class WallPasserGame extends FlameGame
 
     // update game level
     // change background image sprite and wall image sprite by game level
-    if (_player.playerScore >= 50/10) {
-      _gameLevel = 2;
-      this._background.sprite = Sprite(images.fromCache('background_2.png'));
-      this._wallManager.sprite = Sprite(images.fromCache('wall_2.png'));
-    }
-    if (_player.playerScore >= 150/10) {
-      _gameLevel = 3;
-      this._background.sprite = Sprite(images.fromCache('background_3.png'));
-      this._wallManager.sprite = Sprite(images.fromCache('wall_3.png'));
-    }
-    if (_player.playerScore >= 500/10) {
-      _gameLevel = 4;
-      this._background.sprite = Sprite(images.fromCache('background_4.png'));
-      this._wallManager.sprite = Sprite(images.fromCache('wall_4.png'));
-    }
-    if (_player.playerScore >= 1000/10) {
-      _gameLevel = 5;
-      this._background.sprite = Sprite(images.fromCache('background_5.png'));
-      this._wallManager.sprite = Sprite(images.fromCache('wall_5.png'));
+    if (_player.playerScore > _scoreToGameLevelIndex) {
+      _scoreToGameLevelIndex *= 3;
+      ++_gameLevel;
+      this._background.sprite =
+          Sprite(images.fromCache('background_$_gameLevel.png'));
+      this._wallManager.sprite =
+          Sprite(images.fromCache('wall_$_gameLevel.png'));
     }
 
     // this lines are required for command class implementation
@@ -240,6 +229,7 @@ class WallPasserGame extends FlameGame
 
   // reset everything
   void reset() {
+    this._scoreToGameLevelIndex = 50;
     this._background.sprite = Sprite(images.fromCache('background_1.png'));
     this._wallManager.sprite = Sprite(images.fromCache('wall_1.png'));
     this._gameLevel = 1;
