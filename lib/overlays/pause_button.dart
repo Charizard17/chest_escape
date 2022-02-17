@@ -20,7 +20,7 @@ class PauseButton extends StatelessWidget {
         (MediaQuery.of(context).size.height -
                 gameRef.gameCanvasSize.y +
                 gameRef.gameTopPadding.y +
-                60) /
+                100) /
             MediaQuery.of(context).size.height,
       ),
       child: IconButton(

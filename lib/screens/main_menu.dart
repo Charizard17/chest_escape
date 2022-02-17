@@ -18,7 +18,17 @@ class MainMenu extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Container(
-          color: Colors.black.withOpacity(0.8),
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment(0.9, 0.1),
+              colors: [
+                Colors.grey,
+                Colors.black87,
+              ],
+              tileMode: TileMode.repeated,
+            ),
+          ),
           width: MediaQuery.of(context).size.width,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

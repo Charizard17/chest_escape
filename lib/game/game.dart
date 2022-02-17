@@ -161,19 +161,19 @@ class WallPasserGame extends FlameGame
   // change default flame background black to an other color
   @override
   Color backgroundColor() {
-    return Colors.black.withOpacity(0.8);
+    return Colors.transparent;
   }
 
   // this method reads the settings from the hive box
   Future<Settings> _readSettings() async {
-  final box = await Hive.openBox<Settings>(Settings.SETTINGS_BOX);
-  final settings = box.get(Settings.SETTINGS_KEY);
-  if (settings == null) {
-    box.put(Settings.SETTINGS_KEY,
-        Settings(soundEffects: true, backgroundMusic: true));
+    final box = await Hive.openBox<Settings>(Settings.SETTINGS_BOX);
+    final settings = box.get(Settings.SETTINGS_KEY);
+    if (settings == null) {
+      box.put(Settings.SETTINGS_KEY,
+          Settings(soundEffects: true, backgroundMusic: true));
+    }
+    return box.get(Settings.SETTINGS_KEY)!;
   }
-  return box.get(Settings.SETTINGS_KEY)!;
-}
 
   // if player minimize the app or open an another app
   // then it means app lifecycle state is not resumed
@@ -236,12 +236,31 @@ class WallPasserGame extends FlameGame
 
   @override
   void render(Canvas canvas) {
+    final rectangle = Rect.fromLTWH(0, 0, size.x, size.y);
+    canvas.drawRect(
+      Rect.fromLTWH(0, 0, size.y, size.x),
+      Paint()
+        ..color = Colors.red
+        ..style = PaintingStyle.stroke
+        ..shader = LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment(0.9, 0.1),
+          colors: [
+            Colors.grey,
+            Colors.black87,
+          ],
+          tileMode: TileMode.repeated,
+        ).createShader(rectangle)
+        ..strokeWidth = size.x * 3,
+    );
+
     // change this health bar by player health percentage
     canvas.drawRect(
       Rect.fromLTWH(gameCanvasSize.x - 130, 10,
           1.25 * _player.playerHealth.toDouble(), 21),
       Paint()..color = Color.fromARGB(255, 125, 10, 10),
     );
+
     super.render(canvas);
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:wall_passer_flame_game/game/audio_manager.dart';
 
 import './main_menu.dart';
 import '../game/game.dart';
@@ -19,7 +20,17 @@ class SettingsMenu extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Container(
-          color: Colors.black.withOpacity(0.8),
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment(0.9, 0.1),
+              colors: [
+                Colors.grey,
+                Colors.black87,
+              ],
+              tileMode: TileMode.repeated,
+            ),
+          ),
           width: MediaQuery.of(context).size.width,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -42,42 +53,50 @@ class SettingsMenu extends StatelessWidget {
                   children: [
                     Selector<Settings, bool>(
                       selector: (context, settings) => settings.backgroundMusic,
-                      builder: (context, value, child) {
+                      builder: (context, backgroundMusic, _) {
                         return SwitchListTile(
                           title: Text(
-                            'Sound Effects',
+                            'Background Music',
                             style: TextStyle(
                               fontSize: 18,
-                              color: Colors.amber,
+                              color:
+                                  backgroundMusic ? Colors.amber : Colors.grey,
                             ),
                           ),
                           activeColor: Colors.amber,
                           inactiveThumbColor: Colors.grey,
                           inactiveTrackColor: Colors.black,
-                          value: value,
-                          onChanged: (newValue) {
+                          value: backgroundMusic,
+                          onChanged: (bool newValue) {
+                            print(backgroundMusic);
                             Provider.of<Settings>(context, listen: false)
                                 .backgroundMusic = newValue;
+                            if (newValue) {
+                              AudioManager.instance
+                                  .startBackgroundMusic('SynthBomb.wav');
+                            } else {
+                              AudioManager.instance.stopBackgroundMusic();
+                            }
                           },
                         );
                       },
                     ),
                     Selector<Settings, bool>(
                       selector: (context, settings) => settings.soundEffects,
-                      builder: (context, value, child) {
+                      builder: (context, soundEffects, _) {
                         return SwitchListTile(
                           title: Text(
-                            'Background Music',
+                            'Sound Effects',
                             style: TextStyle(
                               fontSize: 18,
-                              color: Colors.amber,
+                              color: soundEffects ? Colors.amber : Colors.grey,
                             ),
                           ),
                           activeColor: Colors.amber,
                           inactiveThumbColor: Colors.grey,
                           inactiveTrackColor: Colors.black,
-                          value: value,
-                          onChanged: (newValue) {
+                          value: soundEffects,
+                          onChanged: (bool newValue) {
                             Provider.of<Settings>(context, listen: false)
                                 .soundEffects = newValue;
                           },
