@@ -6,9 +6,11 @@ import 'package:flame/palette.dart';
 import 'package:hive/hive.dart';
 
 import './audio_manager.dart';
-import 'chest_manager.dart';
-import 'chest.dart';
+import './chest_manager.dart';
 import './player.dart';
+import './chest.dart';
+import '../screens/main_menu.dart';
+import '../screens/settings_menu.dart';
 import '../models/command.dart';
 import '../models/settings.dart';
 import '../models/game_canvas_size.dart';
@@ -182,17 +184,20 @@ class ChestEscape extends FlameGame
   // if it is so, pause the game and show pause menu
   @override
   void lifecycleStateChange(AppLifecycleState state) {
-    switch (state) {
-      case AppLifecycleState.resumed:
-        break;
-      case AppLifecycleState.paused:
-      case AppLifecycleState.detached:
-      case AppLifecycleState.inactive:
-        if (this._player.playerHealth > 0) {
-          this.pauseEngine();
-          this.overlays.remove(PauseButton.ID);
-          this.overlays.add(PauseMenu.ID);
-        }
+    if (!(this.overlays.isActive(MainMenu.ID)) &&
+        !(this.overlays.isActive(SettingsMenu.ID))) {
+      switch (state) {
+        case AppLifecycleState.resumed:
+          break;
+        case AppLifecycleState.paused:
+        case AppLifecycleState.detached:
+        case AppLifecycleState.inactive:
+          if (this._player.playerHealth > 0) {
+            this.pauseEngine();
+            this.overlays.remove(PauseButton.ID);
+            this.overlays.add(PauseMenu.ID);
+          }
+      }
     }
     super.lifecycleStateChange(state);
   }
