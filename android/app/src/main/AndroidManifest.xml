@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.wall_passer_flame_game">
+    package="com.example.chest_escape">
    <application
-        android:label="wall_passer_flame_game"
+        android:label="chest_escape"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

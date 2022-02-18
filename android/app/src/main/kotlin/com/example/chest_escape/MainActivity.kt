@@ -1,4 +1,4 @@
-package com.example.wall_passer_flame_game
+package com.example.chest_escape
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -24,7 +24,7 @@ class MainMenu extends StatelessWidget {
               end: Alignment(0.9, 0.1),
               colors: [
                 Colors.grey,
-                Colors.black87,
+                Colors.black,
               ],
               tileMode: TileMode.repeated,
             ),
