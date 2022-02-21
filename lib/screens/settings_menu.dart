@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import './main_menu.dart';
 import '../game/game.dart';
-import '../game/audio_manager.dart';
+import '../components/audio_manager.dart';
 import '../models/settings.dart';
 
 class SettingsMenu extends StatelessWidget {

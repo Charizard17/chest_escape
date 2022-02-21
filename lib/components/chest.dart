@@ -1,7 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:flame/geometry.dart';
 
-import './game.dart';
+import '../game/game.dart';
 import './player.dart';
 import '../models/command.dart';
 import '../models/game_canvas_size.dart';

@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:flame/components.dart';
 
-import './game.dart';
-import 'chest.dart';
+import '../game/game.dart';
+import './chest.dart';
 import '../models/game_canvas_size.dart';
 
 class ChestManager extends Component

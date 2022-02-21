@@ -5,10 +5,10 @@ import 'package:flame/game.dart';
 import 'package:flame/palette.dart';
 import 'package:hive/hive.dart';
 
-import './audio_manager.dart';
-import './chest_manager.dart';
-import './player.dart';
-import './chest.dart';
+import '../components/audio_manager.dart';
+import '../components/chest_manager.dart';
+import '../components/player.dart';
+import '../components/chest.dart';
 import '../screens/main_menu.dart';
 import '../screens/settings_menu.dart';
 import '../models/command.dart';

@@ -2,9 +2,9 @@ import 'package:flame/components.dart';
 import 'package:flame/geometry.dart';
 import 'package:flame/sprite.dart';
 
-import './game.dart';
+import '../game/game.dart';
 import './audio_manager.dart';
-import 'chest.dart';
+import './chest.dart';
 import '../models/game_canvas_size.dart';
 
 class Player extends SpriteAnimationComponent
