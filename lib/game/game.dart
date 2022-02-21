@@ -49,7 +49,7 @@ class ChestEscape extends FlameGame
   // set game level to 1 on the beginning and set a getter for it
   int _gameLevel = 1;
   int get gameLevel => _gameLevel;
-  int _scoreToGameLevelIndex = 50;
+  int _scoreToGameLevelIndex = 30;
 
   // initialize command list and add later command list
   // these lists is reqiured for command class implementation
@@ -208,8 +208,8 @@ class ChestEscape extends FlameGame
 
     // update game level
     // change background image sprite and chest image sprite by game level
-    if (_player.playerScore > _scoreToGameLevelIndex) {
-      _scoreToGameLevelIndex *= 3;
+    if (_gameLevel < 5 && _player.playerScore >= _scoreToGameLevelIndex) {
+      _scoreToGameLevelIndex *= 4;
       ++_gameLevel;
       this._background.sprite =
           Sprite(images.fromCache('background_$gameLevel.png'));
@@ -278,7 +278,7 @@ class ChestEscape extends FlameGame
 
   // reset everything
   void reset() {
-    this._scoreToGameLevelIndex = 50;
+    this._scoreToGameLevelIndex = 30;
     this._background.sprite = Sprite(images.fromCache('background_1.png'));
     this._chestManager.sprite = Sprite(images.fromCache('chest_1.png'));
     this._gameLevel = 1;

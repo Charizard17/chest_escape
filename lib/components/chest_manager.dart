@@ -10,7 +10,6 @@ class ChestManager extends Component
     with HasGameRef<ChestEscape>, GameCanvasSize {
   final int _baseNumber = 8;
   int _gameLevel = 1;
-  double _speed = 1.4;
 
   Random random = Random();
 
@@ -36,19 +35,22 @@ class ChestManager extends Component
 
     final randomNumber = random.nextInt(_baseNumber);
 
-    for (var i = 0; i < _baseNumber; ++i) {
+    var randomNumberArray = <int>[0, 1, 2, 3, 4, 5, 6, 7];
+    randomNumberArray.shuffle();
+    randomNumberArray.removeRange(0, _baseNumber - (gameRef.gameLevel + 2));
+    randomNumberArray.sort();
+
+    for (var i = 0; i < randomNumberArray.length; ++i) {
       Chest chest = Chest(
         sprite: sprite,
-        position:
-            position + Vector2(i * this.gameCanvasSize.x / _baseNumber, 0),
+        position: position +
+            Vector2(
+                randomNumberArray[i] * this.gameCanvasSize.x / _baseNumber, 0),
         size: initialSize,
         anchor: Anchor.center,
-        speed: _speed,
       );
 
-      if (randomNumber != i) {
-        gameRef.add(chest);
-      }
+      gameRef.add(chest);
     }
   }
 
@@ -64,7 +66,6 @@ class ChestManager extends Component
     _timer.update(dt);
 
     if (_gameLevel < gameRef.gameLevel) {
-      _speed = 1.4 + 0.4 * _gameLevel;
       _gameLevel = gameRef.gameLevel;
 
       var newLimit = (3 / (1 + (0.05 * _gameLevel)));
@@ -75,7 +76,6 @@ class ChestManager extends Component
   }
 
   void reset() {
-    this._speed = 1.4;
     this._gameLevel = 1;
     _timer.stop();
     _timer = Timer(3, repeat: true, onTick: _spawnChests);
