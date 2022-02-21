@@ -73,7 +73,7 @@ class ChestEscape extends FlameGame
     // initialize AudioPlayer
     await AudioManager.instance.init(_audioAssets, settings);
 
-    AudioManager.instance.startBackgroundMusic('SynthBomb.wav');
+    // AudioManager.instance.startBackgroundMusic('SynthBomb.wav');
 
     // initialize game background with sprite component
     // sprite image will change by game level
