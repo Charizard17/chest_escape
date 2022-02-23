@@ -9,6 +9,7 @@ import '../components/audio_manager.dart';
 import '../components/chest_manager.dart';
 import '../components/player.dart';
 import '../components/chest.dart';
+import '../models/player_data.dart';
 import '../screens/main_menu.dart';
 import '../screens/settings_menu.dart';
 import '../models/settings.dart';
@@ -46,6 +47,7 @@ class ChestEscape extends FlameGame
   late TextComponent _playerScore;
   late TextComponent _playerHealth;
   late AudioManager _audioManager;
+  late PlayerData _playerData;
   // set game level to 1 on the beginning and set a getter for it
   int _gameLevel = 1;
   int get gameLevel => _gameLevel;
@@ -157,6 +159,24 @@ class ChestEscape extends FlameGame
     return super.onLoad();
   }
 
+  @override
+  void onAttach() {
+    if (buildContext != null) {
+      _playerData = Provider.of<PlayerData>(buildContext!, listen: false);
+    }
+
+    _audioManager.playBackgroundMusic('SynthBomb.wav');
+
+    super.onAttach();
+  }
+
+  @override
+  void onDetach() {
+    _audioManager.stopBackgroundMusic();
+
+    super.onDetach();
+  }
+
   // change default flame background black to an other color
   @override
   Color backgroundColor() {
@@ -220,6 +240,7 @@ class ChestEscape extends FlameGame
     if (_player.playerHealth <= 0 && !camera.shaking) {
       overlays.remove(PauseButton.ID);
       overlays.add(GameOverMenu.ID);
+      // _playerData.addGameScoreToHighScores(_player.playerScore);
       this.pauseEngine();
     }
   }
