@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/palette.dart';
-import 'package:hive/hive.dart';
+import 'package:provider/provider.dart';
 
 import '../components/audio_manager.dart';
 import '../components/chest_manager.dart';
@@ -11,8 +11,8 @@ import '../components/player.dart';
 import '../components/chest.dart';
 import '../screens/main_menu.dart';
 import '../screens/settings_menu.dart';
-import '../models/command.dart';
 import '../models/settings.dart';
+import '../models/command.dart';
 import '../models/game_canvas_size.dart';
 import '../overlays/game_over_menu.dart';
 import '../overlays/pause_menu.dart';
@@ -45,7 +45,7 @@ class ChestEscape extends FlameGame
   late SpriteComponent _background;
   late TextComponent _playerScore;
   late TextComponent _playerHealth;
-  late Settings settings;
+  late AudioManager _audioManager;
   // set game level to 1 on the beginning and set a getter for it
   int _gameLevel = 1;
   int get gameLevel => _gameLevel;
@@ -64,16 +64,11 @@ class ChestEscape extends FlameGame
     // thats why the game should be paused initially
     pauseEngine();
 
-    // read settings from hive
-    settings = await _readSettings();
-
     // load all images
     await images.loadAll(_imageAssets);
 
-    // initialize AudioPlayer
-    await AudioManager.instance.init(_audioAssets, settings);
-
-    // AudioManager.instance.startBackgroundMusic('SynthBomb.wav');
+    _audioManager = AudioManager();
+    add(_audioManager);
 
     // initialize game background with sprite component
     // sprite image will change by game level
@@ -168,17 +163,6 @@ class ChestEscape extends FlameGame
     return Colors.transparent;
   }
 
-  // this method reads the settings from the hive box
-  Future<Settings> _readSettings() async {
-    final box = await Hive.openBox<Settings>(Settings.SETTINGS_BOX);
-    final settings = box.get(Settings.SETTINGS_KEY);
-    if (settings == null) {
-      box.put(Settings.SETTINGS_KEY,
-          Settings(soundEffects: true, backgroundMusic: true));
-    }
-    return box.get(Settings.SETTINGS_KEY)!;
-  }
-
   // if player minimize the app or open an another app
   // then it means app lifecycle state is not resumed
   // if it is so, pause the game and show pause menu
@@ -237,7 +221,6 @@ class ChestEscape extends FlameGame
       overlays.remove(PauseButton.ID);
       overlays.add(GameOverMenu.ID);
       this.pauseEngine();
-      AudioManager.instance.pauseBackgroundMusic();
     }
   }
 

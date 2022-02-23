@@ -1,3 +1,4 @@
+import 'package:chest_escape/models/player_data.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,9 +18,13 @@ void main() async {
     MultiProvider(
       providers: [
         FutureProvider<Settings>(
-          create: (BuildContext context) => null,
+          create: (BuildContext context) => getSettings(),
           initialData: Settings(soundEffects: false, backgroundMusic: false),
         ),
+        // FutureProvider<PlayerData>(
+        //   create: (BuildContext context) => getPlayerData(),
+        //   initialData: PlayerData.fromMap(PlayerData.defaultData),
+        // ),
       ],
       builder: (context, child) {
         return MultiProvider(
@@ -27,6 +32,9 @@ void main() async {
             ChangeNotifierProvider<Settings>.value(
               value: Provider.of<Settings>(context),
             ),
+            // ChangeNotifierProvider<PlayerData>.value(
+            //   value: Provider.of<PlayerData>(context),
+            // ),
           ],
           child: child,
         );
@@ -46,4 +54,25 @@ Future<void> initHive() async {
   Hive.init(dir.path);
 
   Hive.registerAdapter(SettingsAdapter());
+  // Hive.registerAdapter(PlayerDataAdapter());
 }
+
+Future<Settings> getSettings() async {
+  final box = await Hive.openBox<Settings>(Settings.SETTINGS_BOX);
+  final settings = box.get(Settings.SETTINGS_KEY);
+  if (settings == null) {
+    box.put(Settings.SETTINGS_KEY,
+        Settings(soundEffects: true, backgroundMusic: true));
+  }
+  return box.get(Settings.SETTINGS_KEY)!;
+}
+
+// Future<PlayerData> getPlayerData() async {
+//   final box = await Hive.openBox<PlayerData>(PlayerData.PLAYER_DATA_BOX);
+//   final settings = box.get(PlayerData.PLAYER_DATA_KEY);
+//   if (settings == null) {
+//     box.put(
+//         PlayerData.PLAYER_DATA_KEY, PlayerData.fromMap(PlayerData.defaultData));
+//   }
+//   return box.get(PlayerData.PLAYER_DATA_KEY)!;
+// }

@@ -9,27 +9,28 @@ class PlayerData extends ChangeNotifier with HiveObjectMixin {
   static const String PLAYER_DATA_KEY = 'PlayerDataKey';
 
   @HiveField(0)
-  final List<GameScore> highScoresList;
+  final List highScoresList;
 
   PlayerData({
     required this.highScoresList,
   });
 
   void addGameScoreToHighScores(score) {
-    final gameScore = GameScore(score: score, dateTime: DateTime.now());
+    final gameScore = {
+      'score': score,
+      'dateTime': DateTime.now(),
+    };
     this.highScoresList.add(gameScore);
     notifyListeners();
     this.save();
-    print(this.highScoresList);
   }
-}
 
-class GameScore {
-  final int score;
-  final DateTime dateTime;
+  PlayerData.fromMap(
+    Map<String, dynamic> map,
+  ) : this.highScoresList = map['highScoresList'];
 
-  GameScore({
-    required this.score,
-    required this.dateTime,
-  });
+  static Map<String, dynamic> defaultData = {
+    'score': 0,
+    'dateTime': '2022-02-22 21:31:06.304287',
+  };
 }

@@ -1,38 +1,38 @@
-import 'package:flame/flame.dart';
+import 'package:flame/components.dart';
 import 'package:flame_audio/flame_audio.dart';
+import 'package:provider/provider.dart';
 
+import '../game/game.dart';
 import '../models/settings.dart';
 
-class AudioManager {
-  late Settings settings;
-  AudioManager._internal();
-
-  static final AudioManager _instance = AudioManager._internal();
-
-  static AudioManager get instance => _instance;
-
-  Future<void> init(List<String> files, Settings settings) async {
-    this.settings = settings;
+class AudioManager extends Component with HasGameRef<ChestEscape> {
+  @override
+  Future<void>? onLoad() async {
     FlameAudio.bgm.initialize();
-    await FlameAudio.audioCache.loadAll(files);
+
+    await FlameAudio.audioCache.loadAll([
+      'SynthBomb.wav',
+      'hit_sound.mp3',
+    ]);
+
+    return super.onLoad();
   }
 
-  // start, pause, resume and stop background music
-  void startBackgroundMusic(String fileName) {
-    if (settings.backgroundMusic) {
-      FlameAudio.bgm.play(fileName, volume: 0.5);
+    void playBackgroundMusic(String filename) {
+    if (gameRef.buildContext != null) {
+      if (Provider.of<Settings>(gameRef.buildContext!, listen: false)
+          .backgroundMusic) {
+        FlameAudio.bgm.play(filename);
+      }
     }
   }
 
-  void pauseBackgroundMusic() {
-    if (settings.backgroundMusic) {
-      FlameAudio.bgm.pause();
-    }
-  }
-
-  void resumeBackgroundMusic() {
-    if (settings.backgroundMusic) {
-      FlameAudio.bgm.resume();
+  void playSoundEffects(String filename) {
+    if (gameRef.buildContext != null) {
+      if (Provider.of<Settings>(gameRef.buildContext!, listen: false)
+          .soundEffects) {
+        FlameAudio.play(filename);
+      }
     }
   }
 
@@ -40,10 +40,4 @@ class AudioManager {
     FlameAudio.bgm.stop();
   }
 
-  // play the given audio file once
-  void playSoundEffects(String fileName) {
-    if (settings.soundEffects) {
-      FlameAudio.audioCache.play(fileName);
-    }
-  }
 }

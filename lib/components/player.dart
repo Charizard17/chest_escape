@@ -3,6 +3,7 @@ import 'package:flame/geometry.dart';
 import 'package:flame/sprite.dart';
 
 import '../game/game.dart';
+import '../models/command.dart';
 import './audio_manager.dart';
 import './chest.dart';
 import '../models/game_canvas_size.dart';
@@ -87,7 +88,9 @@ class Player extends SpriteAnimationComponent
   @override
   void onCollision(Set<Vector2> intersectionPoints, Collidable other) {
     if (other is Chest) {
-      AudioManager.instance.playSoundEffects('hit_sound.mp3');
+      gameRef.addCommand(Command<AudioManager>(action: (audioPlayer) {
+        audioPlayer.playSoundEffects('hit_sound.mp3');
+      }));
       _playerHealth -= 10;
       if (_playerHealth <= 0) {
         _playerHealth = 0;

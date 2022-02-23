@@ -70,12 +70,6 @@ class SettingsMenu extends StatelessWidget {
                           onChanged: (bool newValue) {
                             Provider.of<Settings>(context, listen: false)
                                 .backgroundMusic = newValue;
-                            if (newValue) {
-                              AudioManager.instance
-                                  .startBackgroundMusic('SynthBomb.wav');
-                            } else {
-                              AudioManager.instance.stopBackgroundMusic();
-                            }
                           },
                         );
                       },

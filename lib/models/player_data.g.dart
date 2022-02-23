@@ -17,7 +17,7 @@ class PlayerDataAdapter extends TypeAdapter<PlayerData> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return PlayerData(
-      highScoresList: (fields[0] as List).cast<GameScore>(),
+      highScoresList: (fields[0] as List).cast<dynamic>(),
     );
   }
 
