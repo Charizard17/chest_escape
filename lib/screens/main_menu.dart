@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './settings_menu.dart';
+import './high_scores.dart';
 import '../overlays/pause_button.dart';
 import '../game/game.dart';
 
@@ -72,6 +73,35 @@ class MainMenu extends StatelessWidget {
                     gameRef.overlays.add(PauseButton.ID);
                     gameRef.reset();
                     gameRef.resumeEngine();
+                  },
+                ),
+              ),
+              SizedBox(height: 20),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.5,
+                height: MediaQuery.of(context).size.width * 0.12,
+                child: ElevatedButton.icon(
+                  icon: Icon(
+                    Icons.format_list_numbered_rounded,
+                    color: Colors.black,
+                    size: 30,
+                  ),
+                  label: Text(
+                    'High Scores',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                    ),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.amber,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                  ),
+                  onPressed: () {
+                    gameRef.overlays.remove(MainMenu.ID);
+                    gameRef.overlays.add(HighScores.ID);
                   },
                 ),
               ),

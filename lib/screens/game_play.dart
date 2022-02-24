@@ -3,6 +3,7 @@ import 'package:flame/game.dart';
 
 import './main_menu.dart';
 import './settings_menu.dart';
+import './high_scores.dart';
 import '../game/game.dart';
 import '../overlays/game_over_menu.dart';
 import '../overlays/pause_menu.dart';
@@ -27,6 +28,8 @@ class GamePlay extends StatelessWidget {
                   MainMenu(gameRef: gameRef),
               SettingsMenu.ID: (BuildContext context, ChestEscape gameRef) =>
                   SettingsMenu(gameRef: gameRef),
+              HighScores.ID: (BuildContext context, ChestEscape gameRef) =>
+                  HighScores(gameRef: gameRef),
               PauseButton.ID: (BuildContext context, ChestEscape gameRef) =>
                   PauseButton(gameRef: gameRef),
               PauseMenu.ID: (BuildContext context, ChestEscape gameRef) =>
