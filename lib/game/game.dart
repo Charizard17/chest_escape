@@ -86,11 +86,31 @@ class ChestEscape extends FlameGame
     final joystick = JoystickComponent(
       knob: CircleComponent(
         radius: gameCanvasSize.x / 12,
-        paint: Paint()..color = const Color(0xffffbf00).withAlpha(150),
+        paint: Paint()
+          ..shader = RadialGradient(
+            radius: 0.2,
+            center: Alignment.bottomRight,
+            colors: [
+              Colors.amber.withAlpha(200),
+              Colors.black87,
+            ],
+            tileMode: TileMode.repeated,
+          ).createShader(Rect.fromCircle(
+              center: Offset(1, 1), radius: gameCanvasSize.x / 12)),
       ),
       background: RectangleComponent(
         size: Vector2(gameCanvasSize.x / 2, gameCanvasSize.x / 6),
-        paint: Paint()..color = const Color(0xffffbf00).withAlpha(50),
+        paint: Paint()
+          ..shader = LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.black.withAlpha(100),
+              Colors.amber.withAlpha(100),
+            ],
+          ).createShader(
+            Rect.fromLTWH(0, 0, gameCanvasSize.x / 2, gameCanvasSize.x / 6),
+          ),
       ),
       position: Vector2(gameCanvasSize.x / 2, gameCanvasSize.y + 150),
     );
