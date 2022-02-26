@@ -100,17 +100,7 @@ class ChestEscape extends FlameGame
       ),
       background: RectangleComponent(
         size: Vector2(gameCanvasSize.x / 2, gameCanvasSize.x / 6),
-        paint: Paint()
-          ..shader = LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Colors.black.withAlpha(100),
-              Colors.amber.withAlpha(100),
-            ],
-          ).createShader(
-            Rect.fromLTWH(0, 0, gameCanvasSize.x / 2, gameCanvasSize.x / 6),
-          ),
+        paint: Paint()..color = Colors.amber.withAlpha(70),
       ),
       position: Vector2(gameCanvasSize.x / 2, gameCanvasSize.y + 150),
     );
