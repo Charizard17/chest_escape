@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import './main_menu.dart';
 import '../game/game.dart';
@@ -8,7 +7,7 @@ class HighScores extends StatelessWidget {
   static const String ID = 'HighScores';
   final ChestEscape gameRef;
 
-  const HighScores({
+  HighScores({
     Key? key,
     required this.gameRef,
   }) : super(key: key);
@@ -73,6 +72,7 @@ class HighScores extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _highScoresList = gameRef.playerData.highScoresList;
     return Scaffold(
       body: Center(
         child: Container(
@@ -113,16 +113,9 @@ class HighScores extends StatelessWidget {
                       Divider(color: Colors.amber),
                     ],
                   ),
-                  tableRow('1', '1234', '24.02.2022'),
-                  tableRow('2', '1017', '21.02.2022'),
-                  tableRow('3', '934', '22.02.2022'),
-                  tableRow('4', '925', '24.02.2022'),
-                  tableRow('5', '842', '23.02.2022'),
-                  tableRow('6', '817', '21.02.2022'),
-                  tableRow('7', '799', '17.02.2022'),
-                  tableRow('8', '775', '20.02.2022'),
-                  tableRow('9', '730', '19.02.2022'),
-                  tableRow('10', '653', '22.02.2022'),
+                  for (var highScore in _highScoresList)
+                    tableRow('${highScore['index']}', '${highScore['score']}',
+                        '${highScore['dateTime']}'),
                 ],
               ),
               SizedBox(height: 30),

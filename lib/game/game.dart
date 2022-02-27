@@ -47,7 +47,10 @@ class ChestEscape extends FlameGame
   late TextComponent _playerScore;
   late TextComponent _playerHealth;
   late AudioManager _audioManager;
-  PlayerData _playerData = PlayerData();
+
+  final PlayerData _playerData = PlayerData();
+  PlayerData get playerData => _playerData;
+  
   // set game level to 1 on the beginning and set a getter for it
   int _gameLevel = 1;
   int get gameLevel => _gameLevel;
