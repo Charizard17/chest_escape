@@ -21,10 +21,10 @@ void main() async {
           create: (BuildContext context) => getSettings(),
           initialData: Settings(soundEffects: false, backgroundMusic: false),
         ),
-        FutureProvider<PlayerData>(
-          create: (BuildContext context) => getPlayerData(),
-          initialData: PlayerData.fromMap(PlayerData.defaultData),
-        ),
+        // FutureProvider<PlayerData>(
+        //   create: (BuildContext context) => getPlayerData(),
+        //   initialData: PlayerData(),
+        // ),
       ],
       builder: (context, child) {
         return MultiProvider(
@@ -32,9 +32,9 @@ void main() async {
             ChangeNotifierProvider<Settings>.value(
               value: Provider.of<Settings>(context),
             ),
-            ChangeNotifierProvider<PlayerData>.value(
-              value: Provider.of<PlayerData>(context),
-            ),
+            // ChangeNotifierProvider<PlayerData>.value(
+            //   value: Provider.of<PlayerData>(context),
+            // ),
           ],
           child: child,
         );
@@ -54,7 +54,6 @@ Future<void> initHive() async {
   Hive.init(dir.path);
 
   Hive.registerAdapter(SettingsAdapter());
-  Hive.registerAdapter(PlayerDataAdapter());
 }
 
 Future<Settings> getSettings() async {
@@ -67,12 +66,12 @@ Future<Settings> getSettings() async {
   return box.get(Settings.SETTINGS_KEY)!;
 }
 
-Future<PlayerData> getPlayerData() async {
-  final box = await Hive.openBox<PlayerData>(PlayerData.PLAYER_DATA_BOX);
-  final playerData = box.get(PlayerData.PLAYER_DATA_KEY);
-  if (playerData == null) {
-    box.put(
-        PlayerData.PLAYER_DATA_KEY, PlayerData.fromMap(PlayerData.defaultData));
-  }
-  return box.get(PlayerData.PLAYER_DATA_KEY)!;
-}
+// Future<PlayerData> getPlayerData() async {
+//   final box = await Hive.openBox<PlayerData>(PlayerData.PLAYER_DATA_BOX);
+//   final playerData = box.get(PlayerData.PLAYER_DATA_KEY);
+//   if (playerData == null) {
+//     box.put(
+//         PlayerData.PLAYER_DATA_KEY, PlayerData());
+//   }
+//   return box.get(PlayerData.PLAYER_DATA_KEY)!;
+// }
