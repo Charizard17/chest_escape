@@ -4,7 +4,7 @@ import 'package:hive/hive.dart';
 part 'settings.g.dart';
 
 @HiveType(typeId: 0)
-class Settings extends ChangeNotifier {
+class Settings extends ChangeNotifier with HiveObjectMixin {
   static const String SETTINGS_BOX = 'SettingsBox';
   static const String SETTINGS_KEY = 'Settings';
 
@@ -15,6 +15,7 @@ class Settings extends ChangeNotifier {
   set backgroundMusic(bool value) {
     _backgroundMusic = value;
     notifyListeners();
+    this.save();
   }
 
   @HiveField(1)
@@ -24,6 +25,7 @@ class Settings extends ChangeNotifier {
   set soundEffects(bool value) {
     _soundEffects = value;
     notifyListeners();
+    this.save();
   }
 
   Settings({

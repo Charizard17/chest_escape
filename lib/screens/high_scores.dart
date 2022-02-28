@@ -114,7 +114,7 @@ class HighScores extends StatelessWidget {
                     ],
                   ),
                   for (var highScore in _highScoresList)
-                    tableRow('${highScore['index']}', '${highScore['score']}',
+                    tableRow('1', '${highScore['score']}',
                         '${highScore['dateTime']}'),
                 ],
               ),
