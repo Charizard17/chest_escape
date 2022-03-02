@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.charilab.chest_escape">
    <application
-        android:label="chest_escape"
+        android:label="Chest Escape"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
