@@ -47,6 +47,7 @@ dev_dependencies:
   hive_generator: ^1.1.2
   build_runner: ^2.1.7
   flutter_launcher_icons: ^0.9.2
+  flutter_native_splash: ^2.0.5
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -61,6 +62,10 @@ flutter_icons:
   image_path: "assets/images/chestescape_icon.png"
   adaptive_icon_background: "#ffc107"
   adaptive_icon_foreground: "assets/images/chestescape_icon_transparent.png"
+
+flutter_native_splash:
+  color: "#ffc107"
+  image: assets/images/chestescape_icon_transparent.png
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

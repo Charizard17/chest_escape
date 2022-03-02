@@ -178,7 +178,7 @@ class ChestEscape extends FlameGame
       _playerData = Provider.of<PlayerData>(buildContext!, listen: false);
     }
 
-    _audioManager.playBackgroundMusic('SynthBomb.wav');
+    // _audioManager.playBackgroundMusic('SynthBomb.wav');
 
     super.onAttach();
   }
