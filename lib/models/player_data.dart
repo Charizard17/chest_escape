@@ -23,7 +23,6 @@ class PlayerData extends ChangeNotifier with HiveObjectMixin {
   };
 
   void addGameScoreToHighScores(score) {
-    print('test?');
     // List tempHighScoresList = [];
     final gameScore = {
       'score': score,

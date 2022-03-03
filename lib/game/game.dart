@@ -44,8 +44,9 @@ class ChestEscape extends FlameGame
   late Player _player;
   late ChestManager _chestManager;
   late SpriteComponent _background;
-  late TextComponent _playerScore;
-  late TextComponent _playerHealth;
+  late TextComponent _playerScoreTextComponent;
+  late TextComponent _playerHealthTextComponent;
+  late TextComponent _gameLevelTextComponent;
   late AudioManager _audioManager;
 
   late PlayerData _playerData;
@@ -74,6 +75,7 @@ class ChestEscape extends FlameGame
 
     _audioManager = AudioManager();
     add(_audioManager);
+
 
     // initialize game background with sprite component
     // sprite image will change by game level
@@ -138,7 +140,7 @@ class ChestEscape extends FlameGame
 
     // show player score as flame text component
     // update score if chests destroyed or player hits a chest
-    _playerScore = TextComponent(
+    _playerScoreTextComponent = TextComponent(
       text: 'Score: 0',
       position: Vector2(10, 7),
       textRenderer: TextPaint(
@@ -149,12 +151,29 @@ class ChestEscape extends FlameGame
         ),
       ),
     );
-    _playerScore.positionType = PositionType.viewport;
-    add(_playerScore);
+    _playerScoreTextComponent.positionType = PositionType.viewport;
+    add(_playerScoreTextComponent);
+
+    
+    // show player score as flame text component
+    // update score if chests destroyed or player hits a chest
+    _gameLevelTextComponent = TextComponent(
+      text: 'LvL: 1',
+      position: Vector2(canvasSize.x/2 - 40, 7),
+      textRenderer: TextPaint(
+        style: TextStyle(
+          fontFamily: 'Texturina',
+          fontSize: 20,
+          color: Colors.amber,
+        ),
+      ),
+    );
+    _gameLevelTextComponent.positionType = PositionType.viewport;
+    add(_gameLevelTextComponent);
 
     // show player health as flame text component
     // update player health if a chest hits to the player
-    _playerHealth = TextComponent(
+    _playerHealthTextComponent = TextComponent(
       text: 'Health: 100%',
       position: Vector2(canvasSize.x - 10, 7),
       textRenderer: TextPaint(
@@ -165,9 +184,9 @@ class ChestEscape extends FlameGame
         ),
       ),
     );
-    _playerHealth.anchor = Anchor.topRight;
-    _playerHealth.positionType = PositionType.viewport;
-    add(_playerHealth);
+    _playerHealthTextComponent.anchor = Anchor.topRight;
+    _playerHealthTextComponent.positionType = PositionType.viewport;
+    add(_playerHealthTextComponent);
 
     return super.onLoad();
   }
@@ -178,7 +197,7 @@ class ChestEscape extends FlameGame
       _playerData = Provider.of<PlayerData>(buildContext!, listen: false);
     }
 
-    // _audioManager.playBackgroundMusic('SynthBomb.wav');
+    _audioManager.playBackgroundMusic('SynthBomb.wav');
 
     super.onAttach();
   }
@@ -246,8 +265,9 @@ class ChestEscape extends FlameGame
     _addLaterCommandList.clear();
 
     // update player score and player health score
-    _playerScore.text = 'Score: ${_player.playerScore}';
-    _playerHealth.text = 'Health: ${_player.playerHealth}%';
+    _playerScoreTextComponent.text = 'Score: ${_player.playerScore}';
+    _playerHealthTextComponent.text = 'Health: ${_player.playerHealth}%';
+    _gameLevelTextComponent.text = 'LvL: $_gameLevel';
 
     // if player is dead show game over menu
     if (_player.playerHealth <= 0 && !camera.shaking) {

@@ -59,9 +59,9 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/images/chestescape_icon.png"
+  image_path: "assets/images/chestescape_icon_trimmed.png"
   adaptive_icon_background: "#ffc107"
-  adaptive_icon_foreground: "assets/images/chestescape_icon_transparent.png"
+  adaptive_icon_foreground: "assets/images/chestescape_icon_transparent_trimmed.png"
 
 flutter_native_splash:
   color: "#ffc107"
