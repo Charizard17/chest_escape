@@ -57,6 +57,8 @@ class ChestEscape extends FlameGame
   int get gameLevel => _gameLevel;
   int _scoreToGameLevelIndex = 30;
 
+  int get endGameScore => _player.playerScore;
+
   // initialize command list and add later command list
   // these lists is reqiured for command class implementation
   final _commandList = List<Command>.empty(growable: true);

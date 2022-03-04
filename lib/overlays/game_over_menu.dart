@@ -23,7 +23,7 @@ class GameOverMenu extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.only(bottom: 80.0),
+              padding: const EdgeInsets.only(bottom: 50.0),
               child: Text(
                 'Game Over',
                 style: TextStyle(
@@ -33,6 +33,15 @@ class GameOverMenu extends StatelessWidget {
                 ),
               ),
             ),
+            Text(
+              'Your score: ${gameRef.endGameScore}',
+              style: TextStyle(
+                fontSize: 40,
+                fontWeight: FontWeight.bold,
+                color: Colors.amber,
+              ),
+            ),
+            SizedBox(height: 50),
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.5,
               height: MediaQuery.of(context).size.width * 0.12,
