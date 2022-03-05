@@ -3,10 +3,10 @@ import 'package:flame/geometry.dart';
 import 'package:flame/sprite.dart';
 
 import '../game/game.dart';
-import '../models/command.dart';
+import '../helpers/command.dart';
 import './audio_manager.dart';
 import './chest.dart';
-import '../models/game_canvas_size.dart';
+import '../helpers/game_canvas_size.dart';
 
 class Player extends SpriteAnimationComponent
     with GameCanvasSize, HasHitboxes, Collidable, HasGameRef<ChestEscape> {

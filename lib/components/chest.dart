@@ -3,8 +3,8 @@ import 'package:flame/geometry.dart';
 
 import '../game/game.dart';
 import './player.dart';
-import '../models/command.dart';
-import '../models/game_canvas_size.dart';
+import '../helpers/command.dart';
+import '../helpers/game_canvas_size.dart';
 
 class Chest extends SpriteComponent
     with HasHitboxes, Collidable, HasGameRef<ChestEscape>, GameCanvasSize {

@@ -4,7 +4,7 @@ import 'package:flame/components.dart';
 
 import '../game/game.dart';
 import './chest.dart';
-import '../models/game_canvas_size.dart';
+import '../helpers/game_canvas_size.dart';
 
 class ChestManager extends Component
     with HasGameRef<ChestEscape>, GameCanvasSize {
