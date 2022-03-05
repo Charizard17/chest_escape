@@ -49,8 +49,8 @@ class ChestEscape extends FlameGame
   late TextComponent _gameLevelTextComponent;
   late AudioManager _audioManager;
 
-  late PlayerData _playerData;
-  PlayerData get playerData => _playerData;
+  // late PlayerData _playerData;
+  // PlayerData get playerData => _playerData;
 
   // set game level to 1 on the beginning and set a getter for it
   int _gameLevel = 1;
@@ -196,7 +196,7 @@ class ChestEscape extends FlameGame
   @override
   void onAttach() {
     if (buildContext != null) {
-      _playerData = Provider.of<PlayerData>(buildContext!, listen: false);
+      // _playerData = Provider.of<PlayerData>(buildContext!, listen: false);
     }
 
     _audioManager.playBackgroundMusic('SynthBomb.wav');
@@ -275,7 +275,7 @@ class ChestEscape extends FlameGame
     if (_player.playerHealth <= 0 && !camera.shaking) {
       overlays.remove(PauseButton.ID);
       overlays.add(GameOverMenu.ID);
-      _playerData.addGameScoreToHighScores(_player.playerScore);
+      // _playerData.addGameScoreToHighScores(_player.playerScore);
       this.pauseEngine();
     }
   }

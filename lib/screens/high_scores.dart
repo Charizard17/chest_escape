@@ -72,7 +72,8 @@ class HighScores extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _highScoresList = gameRef.playerData.highScoresList;
+    // final _highScoresList = gameRef.playerData.highScoresList;
+    final _highScoresList = [];
     return Scaffold(
       body: Center(
         child: Container(

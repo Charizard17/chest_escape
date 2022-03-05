@@ -1,3 +1,4 @@
+import 'package:chest_escape/components/player.dart';
 import 'package:chest_escape/models/player_data.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,9 @@ import 'package:hive/hive.dart';
 
 import './screens/game_play.dart';
 import './models/settings.dart';
+import './models/player_data.dart';
+
+PlayerData _playerData = PlayerData();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,36 +19,20 @@ void main() async {
   await initHive();
 
   runApp(
-    MultiProvider(
-      providers: [
-        FutureProvider<Settings>(
-          create: (BuildContext context) => getSettings(),
-          initialData: Settings(soundEffects: false, backgroundMusic: false),
-        ),
-        FutureProvider<PlayerData>(
-          create: (BuildContext context) => null,
-          initialData: PlayerData.fromMap(PlayerData.defaultData),
-        ),
-      ],
+    FutureProvider<Settings>(
+      create: (BuildContext context) => getSettings(),
+      initialData: Settings(soundEffects: false, backgroundMusic: false),
       builder: (context, child) {
-        return MultiProvider(
-          providers: [
-            ChangeNotifierProvider<Settings>.value(
-              value: Provider.of<Settings>(context),
+        return ChangeNotifierProvider<Settings>.value(
+          value: Provider.of<Settings>(context),
+          child: MaterialApp(
+            theme: ThemeData(
+              fontFamily: 'Texturina',
             ),
-            ChangeNotifierProvider<PlayerData>.value(
-              value: Provider.of<PlayerData>(context),
-            ),
-          ],
-          child: child,
+            home: GamePlay(),
+          ),
         );
       },
-      child: MaterialApp(
-        theme: ThemeData(
-          fontFamily: 'Texturina',
-        ),
-        home: GamePlay(),
-      ),
     ),
   );
 }
@@ -60,8 +48,8 @@ Future<Settings> getSettings() async {
   final box = await Hive.openBox<Settings>(Settings.BOX_NAME);
   final settings = box.get(Settings.BOX_KEY);
   if (settings == null) {
-    box.put(Settings.BOX_KEY,
-        Settings(soundEffects: true, backgroundMusic: true));
+    box.put(
+        Settings.BOX_KEY, Settings(soundEffects: true, backgroundMusic: true));
   }
   return box.get(Settings.BOX_KEY)!;
 }
