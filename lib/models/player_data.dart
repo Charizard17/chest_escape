@@ -33,17 +33,20 @@ class PlayerData extends ChangeNotifier {
 
   highScoresToTop10HighScores() {
     _highScoresList.sort((b, a) => a['score'].compareTo(b['score']));
-    List top10HighScores = [];
+    
+    List tempList = _highScoresList;
+    tempList.length = 10;
 
+    List top10HighScores = [];
     // following lines needs improvemet
     // it is not an efficent way to solve this issue
-    for (var i = 0; i < _highScoresList.length; ++i) {
+    for (var i = 0; i < tempList.length; ++i) {
       if (top10HighScores.length < 10) {
         top10HighScores.add(
           {
             'index': (i + 1).toString(),
-            'score': _highScoresList[i]['score'].toString(),
-            'date': _highScoresList[i]['date'],
+            'score': tempList[i]['score'].toString(),
+            'date': tempList[i]['date'],
           },
         );
       }
