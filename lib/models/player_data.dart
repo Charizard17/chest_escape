@@ -33,9 +33,11 @@ class PlayerData extends ChangeNotifier {
 
   highScoresToTop10HighScores() {
     _highScoresList.sort((b, a) => a['score'].compareTo(b['score']));
-    
+
     List tempList = _highScoresList;
-    tempList.length = 10;
+    if (tempList.length > 10) {
+      tempList.length = 10;
+    }
 
     List top10HighScores = [];
     // following lines needs improvemet

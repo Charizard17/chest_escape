@@ -22,7 +22,7 @@ class AudioManager extends Component with HasGameRef<ChestEscape> {
     if (gameRef.buildContext != null) {
       if (Provider.of<Settings>(gameRef.buildContext!, listen: false)
           .backgroundMusic) {
-        FlameAudio.bgm.play(filename);
+        FlameAudio.bgm.play(filename, volume: 0.5);
       }
     }
   }
