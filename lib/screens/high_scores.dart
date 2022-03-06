@@ -72,8 +72,8 @@ class HighScores extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final _highScoresList = gameRef.playerData.highScoresList;
-    final _highScoresList = [];
+    final _highScoresList = gameRef.playerData.highScoresToTop10HighScores();
+
     return Scaffold(
       body: Center(
         child: Container(
@@ -94,7 +94,7 @@ class HighScores extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.only(bottom: 70.0),
+                padding: const EdgeInsets.only(bottom: 40.0),
                 child: Text(
                   'High Scores',
                   style: TextStyle(
@@ -115,11 +115,11 @@ class HighScores extends StatelessWidget {
                     ],
                   ),
                   for (var highScore in _highScoresList)
-                    tableRow('1', '${highScore['score']}',
-                        '${highScore['dateTime']}'),
+                    tableRow('${highScore["index"]}', '${highScore["score"]}',
+                        '${highScore["date"]}'),
                 ],
               ),
-              SizedBox(height: 30),
+              SizedBox(height: 40),
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.5,
                 height: MediaQuery.of(context).size.width * 0.12,
