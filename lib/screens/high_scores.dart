@@ -95,12 +95,15 @@ class HighScores extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.only(bottom: 40.0),
-                child: Text(
-                  'High Scores',
-                  style: TextStyle(
-                    fontSize: 50,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.amber,
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    'High Scores',
+                    style: TextStyle(
+                      fontSize: 50,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.amber,
+                    ),
                   ),
                 ),
               ),

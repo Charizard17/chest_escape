@@ -113,7 +113,7 @@ class SettingsMenu extends StatelessWidget {
                   icon: Icon(
                     Icons.keyboard_arrow_left_rounded,
                     color: Colors.black,
-                    size: 30,
+                    size: 35,
                   ),
                   label: Align(
                     alignment: Alignment.center,

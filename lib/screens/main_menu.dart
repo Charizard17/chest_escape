@@ -36,13 +36,16 @@ class MainMenu extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.only(bottom: 100),
-                child: Text(
-                  'ChestEscape',
-                  style: TextStyle(
-                    fontSize: 50,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Texturina',
-                    color: Colors.amber,
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    'Chest Escape',
+                    style: TextStyle(
+                      fontSize: 50,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Texturina',
+                      color: Colors.amber,
+                    ),
                   ),
                 ),
               ),

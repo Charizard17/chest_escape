@@ -24,12 +24,15 @@ class GameOverMenu extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(bottom: 50.0),
-              child: Text(
-                'Game Over',
-                style: TextStyle(
-                  fontSize: 50,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.amber,
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  'Game Over',
+                  style: TextStyle(
+                    fontSize: 50,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.amber,
+                  ),
                 ),
               ),
             ),
