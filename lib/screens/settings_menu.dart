@@ -71,7 +71,7 @@ class SettingsMenu extends StatelessWidget {
                             Provider.of<Settings>(context, listen: false)
                                 .backgroundMusic = newValue;
                             if (newValue = false) {
-                              gameRef.audioManager.playBackgroundMusic('SynthBomb.wav');
+                              gameRef.audioManager.playBackgroundMusic('SynthBomb.mp3');
                             } else {
                               gameRef.audioManager.stopBackgroundMusic();
                             }

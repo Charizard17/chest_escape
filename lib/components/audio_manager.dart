@@ -11,7 +11,7 @@ class AudioManager extends Component with HasGameRef<ChestEscape> {
     FlameAudio.bgm.initialize();
 
     await FlameAudio.audioCache.loadAll([
-      'SynthBomb.wav',
+      'SynthBomb.mp3',
       'hit_sound.mp3',
     ]);
 

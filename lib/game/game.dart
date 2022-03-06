@@ -37,7 +37,7 @@ class ChestEscape extends FlameGame
   ];
 
   static const _audioAssets = [
-    'SynthBomb.wav',
+    'SynthBomb.mp3',
     'hit_sound.mp3',
   ];
 
@@ -78,7 +78,7 @@ class ChestEscape extends FlameGame
 
     _audioManager = AudioManager();
     add(_audioManager);
-    _audioManager.playBackgroundMusic('SynthBomb.wav');
+    _audioManager.playBackgroundMusic('SynthBomb.mp3');
 
     // initialize game background with sprite component
     // sprite image will change by game level
@@ -198,7 +198,7 @@ class ChestEscape extends FlameGame
     _playerData = PlayerData();
     _playerData.fetchAndSetPlayerData();
 
-    _audioManager.playBackgroundMusic('SynthBomb.wav');
+    _audioManager.playBackgroundMusic('SynthBomb.mp3');
 
     super.onAttach();
   }
