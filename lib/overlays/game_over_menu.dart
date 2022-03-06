@@ -34,7 +34,7 @@ class GameOverMenu extends StatelessWidget {
               ),
             ),
             Text(
-              'Your score: ${gameRef.endGameScore}',
+              'Final score: ${gameRef.endGameScore}',
               style: TextStyle(
                 fontSize: 40,
                 fontWeight: FontWeight.bold,

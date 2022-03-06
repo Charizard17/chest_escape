@@ -300,7 +300,7 @@ class ChestEscape extends FlameGame
 
     // change this health bar by player health percentage
     canvas.drawRect(
-      Rect.fromLTWH(gameCanvasSize.x - 130, 10,
+      Rect.fromLTWH(gameCanvasSize.x - 130, 9,
           1.25 * _player.playerHealth.toDouble(), 21),
       Paint()..color = Color.fromARGB(255, 125, 10, 10),
     );
