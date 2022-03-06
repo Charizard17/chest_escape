@@ -70,6 +70,11 @@ class SettingsMenu extends StatelessWidget {
                           onChanged: (bool newValue) {
                             Provider.of<Settings>(context, listen: false)
                                 .backgroundMusic = newValue;
+                            if (newValue = false) {
+                              gameRef.audioManager.playBackgroundMusic('SynthBomb.wav');
+                            } else {
+                              gameRef.audioManager.stopBackgroundMusic();
+                            }
                           },
                         );
                       },
@@ -110,11 +115,15 @@ class SettingsMenu extends StatelessWidget {
                     color: Colors.black,
                     size: 30,
                   ),
-                  label: Text(
-                    'Back',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
+                  label: Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Back',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                   style: ElevatedButton.styleFrom(

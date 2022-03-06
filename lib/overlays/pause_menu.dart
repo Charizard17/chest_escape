@@ -38,15 +38,19 @@ class PauseMenu extends StatelessWidget {
               height: MediaQuery.of(context).size.width * 0.12,
               child: ElevatedButton.icon(
                 icon: Icon(
-                  Icons.play_circle_outline_rounded,
+                  Icons.play_arrow_rounded,
                   color: Colors.black,
-                  size: 30,
+                  size: 35,
                 ),
-                label: Text(
-                  'Resume',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
+                label: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Resume',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
@@ -72,11 +76,15 @@ class PauseMenu extends StatelessWidget {
                   color: Colors.black,
                   size: 30,
                 ),
-                label: Text(
-                  'Restart',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
+                label: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Restart',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
@@ -103,11 +111,15 @@ class PauseMenu extends StatelessWidget {
                   color: Colors.black,
                   size: 30,
                 ),
-                label: Text(
-                  'Main Menu',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
+                label: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Main Menu',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 style: ElevatedButton.styleFrom(

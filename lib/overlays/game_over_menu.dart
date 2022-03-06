@@ -33,12 +33,15 @@ class GameOverMenu extends StatelessWidget {
                 ),
               ),
             ),
-            Text(
-              'Final score: ${gameRef.endGameScore}',
-              style: TextStyle(
-                fontSize: 40,
-                fontWeight: FontWeight.bold,
-                color: Colors.amber,
+            FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(
+                'Final score: ${gameRef.endGameScore}',
+                style: TextStyle(
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.amber,
+                ),
               ),
             ),
             SizedBox(height: 50),
@@ -51,11 +54,15 @@ class GameOverMenu extends StatelessWidget {
                   color: Colors.black,
                   size: 30,
                 ),
-                label: Text(
-                  'Restart',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
+                label: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Restart',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
@@ -82,11 +89,15 @@ class GameOverMenu extends StatelessWidget {
                   color: Colors.black,
                   size: 30,
                 ),
-                label: Text(
-                  'Main Menu',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
+                label: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Main Menu',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 style: ElevatedButton.styleFrom(

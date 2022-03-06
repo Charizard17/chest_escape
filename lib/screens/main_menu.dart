@@ -51,15 +51,19 @@ class MainMenu extends StatelessWidget {
                 height: MediaQuery.of(context).size.width * 0.12,
                 child: ElevatedButton.icon(
                   icon: Icon(
-                    Icons.play_circle_outline_rounded,
+                    Icons.play_arrow_rounded,
                     color: Colors.black,
-                    size: 30,
+                    size: 35,
                   ),
-                  label: Text(
-                    'Start Game',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
+                  label: Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Start Game',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
@@ -86,11 +90,15 @@ class MainMenu extends StatelessWidget {
                     color: Colors.black,
                     size: 30,
                   ),
-                  label: Text(
-                    'High Scores',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
+                  label: Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      'High Scores',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
@@ -115,11 +123,15 @@ class MainMenu extends StatelessWidget {
                     color: Colors.black,
                     size: 30,
                   ),
-                  label: Text(
-                    'Settings',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
+                  label: Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Settings',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                   style: ElevatedButton.styleFrom(

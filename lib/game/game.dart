@@ -48,6 +48,7 @@ class ChestEscape extends FlameGame
   late TextComponent _playerHealthTextComponent;
   late TextComponent _gameLevelTextComponent;
   late AudioManager _audioManager;
+  AudioManager get audioManager => _audioManager;
 
   late PlayerData _playerData;
   PlayerData get playerData => _playerData;
@@ -77,6 +78,7 @@ class ChestEscape extends FlameGame
 
     _audioManager = AudioManager();
     add(_audioManager);
+    _audioManager.playBackgroundMusic('SynthBomb.wav');
 
     // initialize game background with sprite component
     // sprite image will change by game level
@@ -155,12 +157,11 @@ class ChestEscape extends FlameGame
     _playerScoreTextComponent.positionType = PositionType.viewport;
     add(_playerScoreTextComponent);
 
-    
     // show player score as flame text component
     // update score if chests destroyed or player hits a chest
     _gameLevelTextComponent = TextComponent(
       text: 'LvL: 1',
-      position: Vector2(canvasSize.x/2 - 40, 7),
+      position: Vector2(canvasSize.x / 2 - 40, 7),
       textRenderer: TextPaint(
         style: TextStyle(
           fontFamily: 'Texturina',
