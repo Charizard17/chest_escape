@@ -125,39 +125,6 @@ class HighScores extends StatelessWidget {
                 height: MediaQuery.of(context).size.width * 0.12,
                 child: ElevatedButton.icon(
                   icon: Icon(
-                    Icons.share_rounded,
-                    color: Colors.black,
-                    size: 25,
-                  ),
-                  label: Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Share',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.amber,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                  ),
-                  onPressed: () {
-                    gameRef.overlays.remove(HighScores.ID);
-                    gameRef.overlays.add(MainMenu.ID);
-                  },
-                ),
-              ),
-              SizedBox(height: 10),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.5,
-                height: MediaQuery.of(context).size.width * 0.12,
-                child: ElevatedButton.icon(
-                  icon: Icon(
                     Icons.keyboard_arrow_left_rounded,
                     color: Colors.black,
                     size: 35,
