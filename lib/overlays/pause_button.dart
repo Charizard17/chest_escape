@@ -14,15 +14,9 @@ class PauseButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment(
-        -1,
-        (MediaQuery.of(context).size.height -
-                gameRef.gameCanvasSize.y +
-                gameRef.gameTopPadding.y +
-                100) /
-            MediaQuery.of(context).size.height,
-      ),
+    return Positioned(
+      left: 5,
+      top: gameRef.gameCanvasSize.y + gameRef.gameTopPadding.y + 5,
       child: IconButton(
         icon: Icon(
           Icons.pause_circle_outline_rounded,
