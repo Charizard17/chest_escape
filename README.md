@@ -37,6 +37,11 @@ To install and run Chest Escape on your device, follow these steps:
 
 <img src = "assets/menu.png" width ="200" /> <img src = "assets/gameplay.png" width ="200" /> <img src = "assets/high-scores.png" width ="200" /> <img src = "assets/settings.png" width ="200" />
 
+## Google Play Store
+
+You can download Chest Escape from the [Google Play Store](https://play.google.com/store/apps/details?id=com.charilab.chest_escape) to play it on your Android device.
+
+
 ## Contributions
 
 Contributions to Chest Escape are welcome! If you encounter any bugs or have suggestions for new features, please open an issue in the GitHub repository. Additionally, you can submit pull requests to contribute code improvements.
