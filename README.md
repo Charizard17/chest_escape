@@ -16,7 +16,7 @@ The game consists of the following pages:
 
 2. High scores: Here, you can view the highest scores achieved by players. Compete with others to see who can escape the most boxes and secure a top position on the leaderboard.
 
-3. Settings: Customize the game according to your preferences in the settings page. Adjust sound effects, difficulty levels, or any other game settings to enhance your gaming experience.
+3. Settings: Customize the game according to your preferences in the settings page. Adjust sound effects or background music to enhance your gaming experience.
 
 ## Installation and Usage
 
