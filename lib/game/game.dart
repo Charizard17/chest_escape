@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/palette.dart';
-import 'package:provider/provider.dart';
 
 import '../components/audio_manager.dart';
 import '../components/chest_manager.dart';
@@ -12,7 +11,6 @@ import '../components/chest.dart';
 import '../models/player_data.dart';
 import '../screens/main_menu.dart';
 import '../screens/settings_menu.dart';
-import '../models/settings.dart';
 import '../helpers/command.dart';
 import '../helpers/game_canvas_size.dart';
 import '../overlays/game_over_menu.dart';
@@ -34,11 +32,6 @@ class ChestEscape extends FlameGame
     'chest_3.png',
     'chest_4.png',
     'chest_5.png',
-  ];
-
-  static const _audioAssets = [
-    'SynthBomb.mp3',
-    'hit_sound.mp3',
   ];
 
   late Player _player;

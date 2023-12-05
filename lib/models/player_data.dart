@@ -2,8 +2,6 @@ import 'package:chest_escape/helpers/db_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../helpers/db_helper.dart';
-
 class PlayerData extends ChangeNotifier {
   List _highScoresList = [];
 

@@ -1,5 +1,3 @@
-import 'package:chest_escape/components/player.dart';
-import 'package:chest_escape/models/player_data.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -8,9 +6,6 @@ import 'package:hive/hive.dart';
 
 import './screens/game_play.dart';
 import './models/settings.dart';
-import './models/player_data.dart';
-
-PlayerData _playerData = PlayerData();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

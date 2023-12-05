@@ -1,12 +1,11 @@
 import 'package:flame/components.dart';
-import 'package:flame/geometry.dart';
 
 import '../game/game.dart';
 import './player.dart';
 import '../helpers/command.dart';
 import '../helpers/game_canvas_size.dart';
 
-class Chest extends SpriteComponent
+class Chest extends PositionComponent
     with HasHitboxes, Collidable, HasGameRef<ChestEscape>, GameCanvasSize {
   int _increaseScoreBy = 1;
   int _gameLevel = 1;
